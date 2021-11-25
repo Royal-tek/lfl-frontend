@@ -1,0 +1,332 @@
+<template>
+<div my-5 py-5>
+    <PlayerDetail
+        :show="showDrawer"
+        @hidePlayerDetail ="hidePlayerDetail"
+        :player="players"/>
+ 
+
+
+    <section id="breadcrumbs my-3 py-5" class="breadcrumbs">
+    <div class="container">
+        <div class="about-holder">
+        <h2 class="about-text" data-aos="fade-down"  data-aos-delay="300">My Team</h2>
+        </div>
+    </div>
+    </section><!-- End Breadcrumbs -->
+
+<!--  THIS IS THE FIELD WHICH CONTAINS THE WHOLE FIELD COMPONENT  -->
+    <div class="field ">
+        
+        
+        <!--THIS IS THE CONTAINER HOLDING THE ENTIRE PROJECT -->
+        <div class="container">
+            <!-- THIS IS THE GOALKEEPER ROW -->
+            <div class="row" >
+                <div class="col" v-for="player in players" :key="player.id">
+                    <div class="player mt-2 pt-3">
+                        <div class="player-img" @click="showPlayerDetails()"> 
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6 class="text-uppercase" @click="showPlayerDetails()" v-if="player.postition == 'mid'">{{player.name}}</h6><hr>
+                            <h6 class="text-uppercase text-white bg-success p-2" @click="showPlayerDetails()"> {{}}</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6>0</h6>
+                        </div>
+                            
+                    </div>
+                </div>
+            </div>
+            <!-- THIS IS THE END OF THE GOALKEEPER ROW -->
+
+
+            <!-- THIS IS THE DEFENDER ROW -->
+            <div class="row">
+
+            <!-- THIS IS THE FIRST DEFENDER COLUMN -->
+                    <div class="col">
+                    <div class="player">
+                        <div class="player-img">
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6 class="text-uppercase"> Afonime Royal</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6> 0</h6>
+                        </div>
+                            
+                    </div>
+                </div>
+                <!-- THIS IS THE END OF THE FIRST DEFENDER COLUMN -->
+
+                
+                    <div class="col ">
+                    <div class="player">
+                        <div class="player-img" @click ="showPlayerDetails()">
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6> Afonime Royal</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6> 0</h6>
+                        </div>
+                            
+                    </div>
+                </div>
+
+                    <div class="col">
+                    <div class="player">
+                        <div class="player-img">
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6> Afonime Royal</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6> 0</h6>
+                        </div>
+                            
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="player">
+                        <div class="player-img">
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6> Afonime Royal</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6> 0</h6>
+                        </div>
+                            
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- THIS IS THE END OF THE DEFENDER ROW -->
+
+            <!-- THIS IS THE MIDFIELDER ROW -->
+
+            <div class="row my-5">
+                <!-- THE IS THE MIDFIELDER COLUMN -->
+                <div class="col">  
+                    <div class="player mt-2 pt-3">
+                    <div class="player-img">
+                        <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                    </div>
+                    <div class="player-info my-2">
+                        <h6 class="text-uppercase"> Afonime Royal</h6>
+                    </div>
+                    <div class="player-point">
+                        <h6> 0</h6>
+                    </div>
+                        
+                </div>
+                </div>
+                <!-- THIS IS THE END OF THE MIDFIELDER COLUMN -->
+                <div class="col">  
+                    <div class="player mt-2 pt-3">
+                    <div class="player-img">
+                        <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                    </div>
+                    <div class="player-info my-2">
+                        <h6> Afonime Royal</h6>
+                    </div>
+                    <div class="player-point">
+                        <h6> 0</h6>
+                    </div>
+                        
+                </div>
+                </div>
+
+                <div class="col">  
+                    <div class="player mt-2 pt-3">
+                    <div class="player-img">
+                        <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                    </div>
+                    <div class="player-info my-2">
+                        <h6> Afonime Royal</h6>
+                    </div>
+                    <div class="player-point">
+                        <h6> 0</h6>
+                    </div>
+                        
+                </div>
+                </div>
+            </div>
+
+            <!-- THIS IS THE END OF THE MIDFILEDER ROW -->
+
+            <!-- THIS IS THE ATTACKERS ROW -->
+            <div class="row">
+                <!-- THIS IS THE ATTACKERS COLUMN -->
+                <div class="col">  
+                    <div class="player mt-2 pt-3">
+                        <div class="player-img">
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6 class="text-uppercase"> Afonime Royal</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6> 0</h6>
+                        </div>
+                        
+                </div>
+                </div>
+                <!-- THIS IS THE END OF THE ATTACKERS COLUMN -->
+                <div class="col">  
+                    <div class="player mt-2 pt-3">
+                        <div class="player-img">
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6> Afonime Royal</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6> 0</h6>
+                        </div>
+                        
+                </div>
+                </div>
+
+                <div class="col">  
+                    <div class="player mt-2 pt-3">
+                        <div class="player-img">
+                            <img src="/assets/img/image.png" class="img-fluid" alt="player icon" style="width:70px; height:70px">
+                        </div>
+                        <div class="player-info my-2">
+                            <h6> Afonime Royal</h6>
+                        </div>
+                        <div class="player-point">
+                            <h6> 0</h6>
+                        </div>
+                        
+                </div>
+                </div>
+            </div>
+
+
+            <!-- THIS IS THE END OF THE ATTACKERS ROW -->
+
+        </div>
+    </div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios'
+// import {mapState} from 'vuex'
+import PlayerDetail from '../components/PlayerDetail.vue'
+// import Players from '../components/Players.vue'
+export default {
+    name: 'Field',
+    components:{
+        PlayerDetail
+    },
+
+    data(){
+        return{
+            showDrawer: false,
+            players:[],
+        }
+    },
+    
+    methods:{
+        
+        showPlayerDetails(){
+            this.showDrawer = true
+        },
+        hidePlayerDetail(){
+            this.showDrawer = false
+        },
+    
+        getplayers(){
+            
+            axios.get("http://127.0.0.1:8000/api/listplayers/", {headers: {Authorization :"Token 2966b6d0b28398710d8061ef7ef52cc71cee00ee"}})
+            .then(response=>{
+                this.players = response.data
+                console.log(response.data)
+                console.log("players",this.players)
+            })
+        },
+    },
+    mounted(){
+        this.getplayers()
+
+    },
+}
+</script>
+<style scoped lang=scss>
+    .field{
+        background-image: url(../assets/images/f2.jpg);
+        height: 1000px;
+        background-position: initial;
+        background-size: cover;
+        position: relative;
+
+        .player{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            flex-direction: column;
+            /* background-color: #fff; */
+            color: black;
+
+            .player-img{
+                cursor: pointer;
+            }
+            .player-info{
+                background-color: white;
+                padding: 8px;
+                text-align: center;
+                cursor: pointer;
+            }
+            .player-point{
+                background-color: #16b37c;
+                padding:  5px 20px;
+                color: white;
+            }
+        }
+    
+
+    
+    }
+    @media (max-width:700px){
+        .field{
+            background-position: center;
+        }
+        /* .player-img{
+            img{
+                width: 10px  !important;
+                height: 30px !important;
+            } */
+        /* } */
+        .player{
+            .player-info{
+                h6{
+                    text-align: center;
+                    font-size: 10px;
+                    padding: 0;
+                }
+
+            }
+            .player-point{
+                h6{
+                    text-align: center;
+                    font-size: 15px;
+                    padding: 0 ;
+                }
+            }
+        }
+    }
+
+</style>

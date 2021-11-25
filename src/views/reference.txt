@@ -1,0 +1,190 @@
+<template>
+<div>
+    <Navbar/>
+    <div class="pick-team py-3">
+        <section id="breadcrumbs" class="breadcrumbs">
+            <div class="container">
+                <div class="about-holder">
+                    <h2 class="about-text" data-aos="fade-down"  data-aos-delay="300">Select Players</h2>
+                </div>
+            </div>
+        </section>
+    <!-- End Breadcrumbs -->
+    <section class="select-players">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12 alert alert-warning" v-if="error">
+                    {{error}}
+                </div>
+                <div class="col-md-2 text-center">
+                    <h4>Players</h4>
+                    <div class="form-group d-flex">
+                    <i class="fa fa-search" ></i><input  type="text" class="form-control" v-model="search">
+                    </div>
+                    <button class="btn col-md-12 col-12" :disabled="disabled"  v-for="player in filteredPost" :key="player.id" @click="addplayer(player.id)">
+                        <span v-if="player.position == 'gk'">{{player.position}} -- {{player.firstname}}<img :src="player.image"></span>
+                        <span v-if="player.position == 'def'">{{player.firstname}}</span>
+                        <span v-if="player.position == 'mid'">{{player.firstname}}</span>
+                        <span v-if="player.position == 'fwd'">{{player.firstname}}</span>
+                    </button>
+                </div>
+                <div class="col-md-8 d-none d-md-block d-lg-block text-center">
+                    <div class="field">
+                <div class="row col-md-12 p-5">         
+                        <div class=" col-md-3 text-white p-5 "  v-for="selectID in get_Data" :key="selectID.id">
+                    <div class="col-md-2"  v-for="selectIDsub in selectID" :key="selectIDsub.id" >
+                        <span class="fa fa-user fa-4x col-md-2 "></span>
+                        <span class="text-center col-md-12">{{selectIDsub.firstname}}</span>
+                    </div>
+                    </div>
+</div>
+                    </div>
+                </div>
+                <div class="col-md-2 text-center">
+                    <h4>Players Select {{ get_count() }}</h4>
+                    <p style="color:red" v-for="selectID in get_Data" :key="selectID.id">
+                    <i class="row" v-for="selectIDsub in selectID" :key="selectIDsub.id" >
+                    <button  class="btn col-md-10 col-10">   {{selectIDsub.firstname}} </button><span class="fa fa-trash col-md-2 mt-2" style="cursor:pointer" @click="deleteTeam(selectIDsub.id)"   ></span>
+                    </i>
+                    </p>
+                
+
+                </div>
+            </div>
+    
+    
+        </div>
+        
+        
+    </section>
+    </div>
+    <Footer/>
+    </div>
+</template>
+<script>
+import axios from 'axios'
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
+export default {
+    name :'PickTeam',
+    components:{
+        Navbar, Footer
+    },
+    data(){
+        return{
+            players : [],
+            team : [],
+            select_team:[],
+            get_Data:[],
+            error:null,
+            disabled:false,
+            get_title:null,
+            data:null,
+            search : ''
+        }
+    },
+    mounted(){
+        this.getPlayers()
+        this.check_team()
+        
+        this.check_error()
+        
+
+        
+    },
+    methods:{
+        check_team(){
+            if(localStorage.getItem("team")){
+                console.log("am")
+                this.get_Data =JSON.parse(localStorage.getItem("team"))
+            }
+        },
+
+        check_error(){
+            if(this.error == ''){
+                console.log("errorrrrrrr")
+                setTimeout(function(){
+                    this.error = ""
+                }, 500)
+            }
+        },
+        addplayer(id){
+            if(this.get_count() < 9){
+            if(this.get_Data.length){
+            const d = this.get_Data.filter(dat_ge =>{ return dat_ge[0].id === id})  
+            if(d.length){
+                    this.error = "You have already selected this player"
+            }
+            else{
+                console.log("execute")
+                    this.get_Data.unshift(this.players.filter(data => data.id === id))
+                    
+            }
+            
+            }
+            else{
+                console.log("execute")
+                    this.get_Data.unshift(this.players.filter(data => data.id === id))
+            }
+                localStorage.setItem("team", JSON.stringify(this.get_Data))
+        
+        
+        
+        
+        }
+        else{
+            this.disabled = true
+            this.get_title ="maximum"
+        }
+        },
+        get_count(){
+            return this.get_Data.length
+        },
+        deleteTeam(id){
+            this.get_Data = this.get_Data.splice(id)
+            console.log(this.get_Data)
+        },
+        getPlayers(){
+            axios.get("http://127.0.0.1:8000/api/listallplayers/", {headers :{"Authorization": "Token "+localStorage.getItem("auth_token")}})
+            .then(response=>{
+                
+                this.players = response.data
+                
+            })
+        },
+        // submitTeam(){
+            
+        //     axios.post("http://127.0.0.1:8000/api/createteam/", {
+        //         user : 2,
+        //         team :this.team
+        //     })
+        //     .then(response=>{
+        //         console.log("Team submission successful")
+        //     })
+        //     .catch(error=>{
+        //         console.log(error)
+        //     })
+            
+
+            
+        // }
+    },
+    computed:{
+        filteredPost(){
+            return this.players.filter(player => player.firstname.toLowerCase().includes(this.search.toLowerCase()))
+        },
+    }
+}
+</script>
+<style scoped lang=scss>
+.field{
+    background-image: url(../assets/images/f2.jpg);
+    height: 600px;
+    width: 100%;
+    background-position: initial;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+</style>
