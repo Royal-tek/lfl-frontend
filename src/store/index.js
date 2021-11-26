@@ -50,7 +50,7 @@ export default createStore({
   actions: {
     userLogin(context, usercredentials){
       return new Promise((resolve, reject) => {
-        axios.post('https://lfl-app.herokuapp.com/account/login/', {
+        axios.post('http://127.0.0.1:8000/account/login/', {
           login : usercredentials.username,
           password : usercredentials.password
         })

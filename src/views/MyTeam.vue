@@ -71,13 +71,15 @@
             </div>
         </div>
         </div>
+        <!-- <button @click="showalert()"> Click me</button> -->
+        
     </div>
     <Footer/>
 </template>
 
 <script>
 import axios from 'axios'
-
+// import { toast } from 'bulma-toast'
 import Field from '../components/Field.vue'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
@@ -107,6 +109,16 @@ export default {
         this.getPlayers()
     },
     methods:{
+            // showalert(){
+            //     toast({
+            //     message : 'Account created, please log in',
+            //     type : 'is-success',
+            //     dismissible : true,
+            //     pauseOnHover : true,
+            //     duration : 2000,
+            //     position : 'bottom-right'
+            // })
+        // },
         getPlayers(){
             axios.get("http://lfl-app.herokuapp.com/api/listplayers/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
             .then(response=>{

@@ -153,7 +153,7 @@ export default {
     },
     methods:{
         getCoachInfo(){
-            axios.get("http://lfl-app.herokuapp.com/api/listallcoaches/")
+            axios.get("https://lfl-app.herokuapp.com/api/listallcoaches/")
             .then(response=>{
                 console.log(response.data)
                 this.coachInfo = response.data

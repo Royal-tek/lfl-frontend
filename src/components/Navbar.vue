@@ -65,10 +65,11 @@ export default {
             // console.log(this.token)
         },
         getUser(){
-            axios.get("http://lfl-app.herokuapp.com/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
+            // axios.get("http://lfl-app.herokuapp.com/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
+            axios.get("http://127.0.0.1:8000/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
             .then(response=>{
                 this.user = response.data
-                // console.log(response.data)
+                console.log(response.data)
             })
             .catch(error=>{
                 console.log(error)

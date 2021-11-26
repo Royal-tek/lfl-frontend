@@ -91,7 +91,7 @@
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p>
-            <router-link to="/field" class="text-dark">My Team</router-link>
+            <router-link to="/myteam" class="text-dark">My Team</router-link>
 
             </p>
             <p>
