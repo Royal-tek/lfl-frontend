@@ -1,4 +1,4 @@
-<template>
+    <template>
   <div>
     <Navbar />
 
@@ -108,10 +108,10 @@
                     <option value="fwd">Forwards</option>
                   </select>
                   <!-- <div>
-                                <b>Team:</b> <select class="select-position" @change="showTeamPlayers(selectedTeam)"> 
-                                <option value="" v-for="(team, index) in teams" :key="index">{{ team }}</option>
-                                </select>
-                            </div> -->
+                                    <b>Team:</b> <select class="select-position" @change="showTeamPlayers(selectedTeam)"> 
+                                    <option value="" v-for="(team, index) in teams" :key="index">{{ team }}</option>
+                                    </select>
+                                </div> -->
                 </div>
                 <input
                   type="search"
@@ -154,10 +154,10 @@
             </button>
             <!-- {{ unselectedplayers }} -->
             <!-- <div v-for="(coach, index) in unselectedplayers" :key="index">
-                    <div v-for="(player, index) in coach.coach.coach" :key="index">
-                        {{ player }}
-                    </div>
-                </div> -->
+                        <div v-for="(player, index) in coach.coach.coach" :key="index">
+                            {{ player }}
+                        </div>
+                    </div> -->
             <!-- {{  formations }} -->
           </div>
 
@@ -194,8 +194,8 @@
                         {{ formations.gk ? formations.gk.team : "none" }}
                       </h6>
                       <!-- <div class="player-point">  
-                                    <h6> 0</h6>
-                                    </div> -->
+                                        <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -245,8 +245,8 @@
                         }}
                       </div>
                       <!-- <div class="player-point">
-                                        <h6> 0</h6>
-                                    </div> -->
+                                            <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -298,8 +298,8 @@
                         }}
                       </div>
                       <!-- <div class="player-point">
-                                    <h6> 0</h6>
-                                    </div> -->
+                                        <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -351,8 +351,8 @@
                         }}
                       </div>
                       <!-- <div class="player-point">
-                                    <h6> 0</h6>
-                                    </div> -->
+                                        <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -366,7 +366,7 @@
     <Footer />
   </div>
 </template>
-<script>
+    <script>
 import { toast } from "bulma-toast";
 import axios from "axios";
 import Navbar from "../components/Navbar.vue";
@@ -446,13 +446,18 @@ export default {
   },
   methods: {
     getUser() {
-      // axios.get("http://lfl-app.herokuapp.com/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
       axios
-        .get("http://127.0.0.1:8000/api/viewuser/", {
+        .get("https://lfl-app.herokuapp.com/api/viewuser/", {
           headers: {
             Authorization: "Token " + localStorage.getItem("auth_token"),
           },
         })
+        //   axios
+        // .get("http://127.0.0.1:8000/api/viewuser/", {
+        //   headers: {
+        // Authorization: "Token " + localStorage.getItem("auth_token"),
+        //   },
+        // })
         .then((response) => {
           this.user = response.data;
           console.log(response.data);
@@ -481,13 +486,15 @@ export default {
       console.log(FormData);
       axios
         .post(
-          "http://127.0.0.1:8000/api/createteam/",
+          "https://lfl-app.herokuapp.com/api/createteam/",
           {
             user: this.user[0].id,
             attackers: this.selectedPlayers.attackers.players.map((p) => p.id),
-            defenders: this.selectedPlayers.attackers.players.map((p) => p.id),
-            midfielders: this.selectedPlayers.midfielders.players.map((p) => p.id),
-            goalkeeper: [this.selectedPlayers.gk.id]
+            defenders: this.selectedPlayers.defender.players.map((p) => p.id),
+            midfielders: this.selectedPlayers.midfielders.players.map(
+              (p) => p.id
+            ),
+            goalkeeper: [this.selectedPlayers.gk.id],
           },
           {
             headers: {
@@ -502,7 +509,7 @@ export default {
     },
     getPlayers() {
       axios
-        .get("http://127.0.0.1:8000/api/displayplayers/")
+        .get("https://lfl-app.herokuapp.com/api/displayplayers/")
         .then((response) => {
           console.log(response.data);
           this.players = response.data;
@@ -705,7 +712,7 @@ export default {
   },
 };
 </script>
-<style scoped lang=scss>
+    <style scoped lang=scss>
 .field {
   background-image: url(https://i.pinimg.com/originals/d7/b0/55/d7b05539aac8c5416c73ca046f977742.jpg);
   height: 900px;
