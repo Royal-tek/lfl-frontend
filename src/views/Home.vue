@@ -64,19 +64,17 @@
 
         <div class="row content content-first">
           <div class="col-lg-6" data-aos="fade-up"  data-aos-delay="300">
-            <h2 class="text-center">Eum ipsam laborum deleniti velitena</h2>
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+            <h2 class="text-center">First of it's kind</h2>
+            <h3 class="text-center text-uppercase">Be part of the launch of the first landmark fantasy league</h3>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-down"  data-aos-delay="300">
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              The landmark fantasy league is the first of it's kind. Get registered and create your fantasy team now. Make your predictions and stake them on the players you have seen perform and trust and hope and wish them the best. What do you stand to gain?
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+              <li><i class="ri-check-double-line"></i> There would be cash prices for the top <b>10</b> users at the end of the season / competition</li>
+              <li><i class="ri-check-double-line"></i> Support the footballers you know and love and hope for them to perform and give you points</li>
+              <li><i class="ri-check-double-line"></i> Get news concerning the players, school sport and much more in the inbuilt blog </li>
             </ul>
           
           </div>
@@ -85,12 +83,12 @@
         <div class="row content mt-5 pt-2">
           
           <div class="col-lg-6" data-aos="fade-down"  data-aos-delay="300">
-            <img src="../assets/images/squadimage3.png" alt="squadimage" class="img-fluid">
+            <img src="../assets/images/lfpex.png" alt="squadimage" class="img-fluid">
         
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0"  data-aos="fade-up"  data-aos-delay="300">
             <h2 class="text-center">Pick your dream team</h2><hr class="my-3">
-            <p class="text-muted text-capitalize">Select your 22 man squad and set them according to your game plan and hope for their best performance.</p>
+            <p class="text-muted text-capitalize text-center">Select your 11 man squad and set them according to your game plan and hope for their best performance.</p>
           </div>
         </div>
 
@@ -104,46 +102,46 @@
         <div class="row">
           <div class="col-md-6" data-aos="fade-left"  data-aos-delay="300">
             <div class="icon-box">
-              <i class="bi bi-briefcase"></i>
-              <h4><a href="#">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <i class="bi bi-plus"></i>
+              <h4><a href="#">Get registered</a></h4>
+              <p>Before you can create your fantasy team you have to get yourslef registered.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-right"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Dolor Sitema</a></h4>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <h4><a href="#">Go to team > pick team</a></h4>
+              <p>When you have been registered , you can now pick your team following the specified rules.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-left"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <h4><a href="#">Go to team > my team</a></h4>
+              <p>At the my team section, you can now view and manage your selected team. View your selected player points and statistics.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-right"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-binoculars"></i>
-              <h4><a href="#">Nemo Enim</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              <h4><a href="#">Go to rankings and view your performance</a></h4>
+              <p>You can go to the ranking sections to track your position in the leaderboards.</p>
             </div>
           </div>
-          <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-left"  data-aos-delay="300">
+          <!-- <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-left"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-brightness-high"></i>
               <h4><a href="#">Magni Dolore</a></h4>
               <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
             </div>
-          </div>
-          <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-right"  data-aos-delay="300">
+          </div> -->
+          <!-- <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-right"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-calendar4-week"></i>
               <h4><a href="#">Eiusmod Tempor</a></h4>
               <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
             </div>
-          </div>
+          </div> -->
         </div>
 
       </div>

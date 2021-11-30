@@ -12,7 +12,7 @@
                         <div class="col-md-6 col-sm-12 form-side">
                         <form @submit.prevent="login" class="form">
                             <div>
-                                {{ this.$store.state.error }}
+                                {{ this.$store.state.error}}
                             </div>
                             <div class="input-group">
                                 <input type="text" class="form-control shadow-none" placeholder="Username" v-model="username">
@@ -27,11 +27,11 @@
                                 <input :type="visibility" class="form-control shadow-none" placeholder="Password" v-model="password">
                                 <div class="input-group-append border-0">
                                     <div class="input-group-text border-0">
-                               <span class="fa fa-eye-slash p-2" @click="showPassword()" v-if="visibility == 'password'"></span>
+                                <span class="fa fa-eye-slash p-2" @click="showPassword()" v-if="visibility == 'password'"></span>
                                 <span class="input-group-addon p-2 fa fa-eye" @click="hidePassword()" v-if="visibility == 'text'"></span>
                                     </div>
                                 </div>
-                              
+
                             </div>
 
                             <div class="form-group">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <button @click="error">click me</button>
+        <!-- <button @click="error">click me</button> -->
     </div>
     
 </template>
@@ -90,7 +90,8 @@ export default {
                 
             })
             .catch(error=>{
-               console.log(this.error)
+            
+                console.log(this.error)
             })
 
         }
