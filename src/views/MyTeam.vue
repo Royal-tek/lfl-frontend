@@ -1,11 +1,11 @@
 <template>
 <div>
     <Navbar/>
-    <div class="my-team py-1">
+    <div class="my-team">
         <section id="breadcrumbs" class="breadcrumbs">
             <div class="container">
                 <div class="about-holder">
-                    <h2 class="about-text" data-aos="fade-down"  data-aos-delay="300">My Team</h2>
+                    <h2 class="about-text" data-aos="fade-down">My Team</h2>
                 </div>
             </div>
         </section>
@@ -14,12 +14,12 @@
             <div class="field">
                 <div class="container">
                     <div class="row">
-                        <div class="col text-center player">
+                        <div class="col text-center player" v-for="gk in team.gk" :key="gk.id">
                             <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
-                            <div class="player-info my-1">
-                            <h6> {{ team.gk }}</h6>
+                            <div class="my-1 gk">
+                            <h6> {{ gk ? gk.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <!-- <div class="player-team">{{ team.defenders.players[index] }}</div> -->
+                            <div class="gk-player-point">{{ gk.playerpoint[gk.playerpoint.length] ? gk.playerpoint[team.gk[0].playerpoint.length] : 'x' }}</div>
                         </div>
                     </div>
                     
@@ -27,9 +27,9 @@
                         <div class="col text-center player"  v-for="(defender, index) in team.defenders.players" :key="index">
                             <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
                             <div class="player-info my-1">
-                            <h6> {{ defender }}</h6>
+                            <h6> {{ defender ? defender.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <!-- <div class="player-team">{{ team.defenders.players[index] }}</div> -->
+                            <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length] ? defender.playerpoint[defender.playerpoint.length] : 'x' }}</div>
                         </div>
                     </div>
 
@@ -37,9 +37,9 @@
                         <div class="col text-center player"  v-for="(midfielder, index) in team.midfielders.players" :key="index">
                             <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
                             <div class="player-info my-1">
-                            <h6> {{ midfielder }}</h6>
+                            <h6> {{ midfielder ? midfielder.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <!-- <div class="player-team">{{ midfielder }}</div> -->
+                            <div class="player-point">{{ midfielder.playerpoint[midfielder.playerpoint.length] ? midfielder.playerpoint[midfielder.playerpoint.length] : 'x' }}</div>
                         </div>
                     </div>
 
@@ -47,9 +47,9 @@
                         <div class="col text-center player"  v-for="(attacker, index) in team.attackers.players" :key="index">
                            <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
                            <div class="player-info my-1">
-                            <h6> {{ attacker }}</h6>
+                            <h6> {{ attacker ? attacker.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <!-- <div class="player-team">{{ attacker }}</div> -->
+                            <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length] ? attacker.playerpoint[attacker.playerpoint.length] : 'x' }}</div>
                         </div>
                     </div>
                 </div>
@@ -57,24 +57,27 @@
 
             <div class="details-display">
                 <div>
-                    <div class="label">Total Points</div>
-                    <div class="value">304</div>
+                    <div class="label">User</div>
+                    <div class="value">{{ user.username }}</div>
                 </div>
                 <div>
                     <div class="label">Total Points</div>
-                    <div class="value">304</div>
+                    <div class="value">0</div>
                 </div>
                 <div>
                     <div class="label">Total Points</div>
-                    <div class="value">304</div>
+                    <div class="value">0</div>
+                </div>
+                <div>
+                    <div class="label">Total Points</div>
+                    <div class="value">0</div>
                 </div>
             </div>
         </div>
         </div>
         <!-- <button @click="showalert()"> Click me</button> -->
-        
+        <Footer/>
     </div>
-    <Footer/>
 </template>
 
 <script>
@@ -90,16 +93,17 @@ export default {
     },
     data(){
         return{
+            user: {},
             team: {
-                gk: "Olabode",
+                gk: [],
                 defenders: {
-                    players: ["Ani", "Ebuka", "Mikini", "Chujor"]
+                    players: []
                 },
                 midfielders: {
-                    players: ["Royal", "DY", "Harry"]
+                    players: []
                 },
                 attackers: {
-                    players: ["Timawus", "Winner", "Msqaure"]
+                    players: []
                 },
             }
         }
@@ -120,9 +124,13 @@ export default {
             // })
         // },
         getPlayers(){
-            axios.get("http://lfl-app.herokuapp.com/api/listplayers/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
+            axios.get("http://lfl-app.herokuapp.com/api/singleuserteam/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
             .then(response=>{
-                this.players = response.data
+                this.team.defenders.players = response.data[0].defenders
+                this.team.midfielders.players = response.data[0].midfielders
+                this.team.attackers.players = response.data[0].attackers
+                this.team.gk = response.data[0].goalkeeper
+                this.user = response.data[0].user
                 console.log(response.data)
             })
             .catch(error=>{
@@ -141,6 +149,10 @@ export default {
     background-position: initial;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.about-holder {
+    /* margin-top: ; */
 }
 
 .row {
@@ -164,17 +176,18 @@ img {
     align-items: center;
 }
 
-.player-info{
-    background-color: #42b31680;
+.gk {
+    background-color: #0000009c;
     padding: 5px;
     padding-bottom: -10px;
-    /* width: 100%; */
+    width: 100px;
+    height: 26px;
     text-align: center;
     color: #fff;
     cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    width: fit-content;
+    /* width: fit-content; */
     text-align: center;
     h6{
         font-size: 13px;
@@ -184,6 +197,40 @@ img {
     }
 }
 
+.player-info{
+    background-color: #0000009c;
+    padding: 5px;
+    padding-bottom: -10px;
+    width: 100%;
+    height: 26px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    /* width: fit-content; */
+    text-align: center;
+    h6{
+        font-size: 13px;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-family: 'Roboto';
+    }
+}
+
+.player-point {
+    color: #fff;
+    background-color: #21d192;
+    /* padding: 5px; */
+    width: 100%;
+}
+
+.gk-player-point {
+    color: #fff;
+    background-color: #21d192;
+    /* padding: 5px; */
+    width: 100px;
+}
 
 @media(min-width: 800px) {
     .my-team {
@@ -193,6 +240,7 @@ img {
     }
     .display {
         display: flex;
+        align-items: flex-start;
     }
 
     .field {
@@ -204,28 +252,29 @@ img {
         flex: 2;
         border: 1px solid #ccc;
     }
+}
 
-    .details-display > div {
+
+.details-display > div {
         display: flex;
-        /* border-bottom: 1px solid #f3f3f3; */
+        border-bottom: 1px solid #ccc;
     }
 
     .details-display .label {
         flex: 7;
         padding: 10px;
-        background-color: #eee;
+        background-color: #f3f3f3;
         font-weight: bold;
     }
 
     .details-display .value {
         padding: 10px;
-        background-color: #20cf92;
+        background-color: #0000007c;
         flex: 1;
         color: #fff;
         font-weight: bold;
     }
 
-}
 
 @media (max-width: 700px){
     .field{

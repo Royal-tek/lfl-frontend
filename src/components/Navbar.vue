@@ -1,7 +1,7 @@
 <template>
-        <nav class="navbar navbar-expand-lg navbar-light  fixed-top" id="navbar" style="background-color:#21D192;">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="navbar" style="background-color:#21D192;">
     <div class="container">
-        <a href="/" class="logo me-auto"><img src="../assets/images/logo1.png" alt="" class="img-fluid"></a>
+        <router-link to="/" class="logo me-auto"><img src="../assets/images/logo1.png" alt="" class="img-fluid"></router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -66,7 +66,7 @@ export default {
         },
         getUser(){
             // axios.get("http://lfl-app.herokuapp.com/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
-            axios.get("http://127.0.0.1:8000/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
+            axios.get("https://lfl-app.herokuapp.com/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
             .then(response=>{
                 this.user = response.data
                 console.log(response.data)
@@ -91,4 +91,10 @@ export default {
 .getstarted {
     font-weight: 560;
 }
+
+/* nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+} */
 </style>

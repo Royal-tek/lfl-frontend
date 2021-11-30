@@ -1,4 +1,4 @@
-<template>
+    <template>
   <div>
     <Navbar />
 
@@ -108,14 +108,14 @@
                     <option value="fwd">Forwards</option>
                   </select>
                   <!-- <div>
-                                <b>Team:</b> <select class="select-position" @change="showTeamPlayers(selectedTeam)"> 
-                                <option value="" v-for="(team, index) in teams" :key="index">{{ team }}</option>
-                                </select>
-                            </div> -->
+                                    <b>Team:</b> <select class="select-position" @change="showTeamPlayers(selectedTeam)"> 
+                                    <option value="" v-for="(team, index) in teams" :key="index">{{ team }}</option>
+                                    </select>
+                                </div> -->
                 </div>
                 <input
                   type="search"
-                  placeholder="Search"
+                  placeholder="Search names, nicknames and teams"
                   class="search-form form-control shadow-none"
                   v-model="search"
                   @keyup="searchPlayers"
@@ -137,7 +137,7 @@
                       : 'picked'
                   "
                 >
-                  <span>{{ player.firstname }} {{ player.lastname }}</span>
+                  <span><b id="player-pos">{{ player.position.toLowerCase() }}</b> - {{ player.firstname.toLowerCase() }} {{ player.lastname.toLowerCase() }}({{ player.team.toUpperCase() }})</span>
                   <span @click="selectPlayer(player)">
                     <i class="fa fa-plus"></i>
                   </span>
@@ -154,10 +154,10 @@
             </button>
             <!-- {{ unselectedplayers }} -->
             <!-- <div v-for="(coach, index) in unselectedplayers" :key="index">
-                    <div v-for="(player, index) in coach.coach.coach" :key="index">
-                        {{ player }}
-                    </div>
-                </div> -->
+                        <div v-for="(player, index) in coach.coach.coach" :key="index">
+                            {{ player }}
+                        </div>
+                    </div> -->
             <!-- {{  formations }} -->
           </div>
 
@@ -187,15 +187,15 @@
                       </div>
                       <div class="player-info my-1">
                         <h6>
-                          {{ formations.gk ? formations.gk.name : "Name" }}
+                          {{ formations.gk ? formations.gk.name.toLowerCase() : "Name" }}
                         </h6>
                       </div>
                       <h6 class="player-team">
                         {{ formations.gk ? formations.gk.team : "none" }}
                       </h6>
                       <!-- <div class="player-point">  
-                                    <h6> 0</h6>
-                                    </div> -->
+                                        <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -232,7 +232,7 @@
                         <h6>
                           {{
                             formations.defender.players[index]
-                              ? formations.defender.players[index].name
+                              ? formations.defender.players[index].name.toLowerCase()
                               : "name"
                           }}
                         </h6>
@@ -245,8 +245,8 @@
                         }}
                       </div>
                       <!-- <div class="player-point">
-                                        <h6> 0</h6>
-                                    </div> -->
+                                            <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -284,7 +284,7 @@
                         <h6>
                           {{
                             formations.midfielders.players[index]
-                              ? formations.midfielders.players[index].name
+                              ? formations.midfielders.players[index].name.toLowerCase()
                               : "name"
                           }}
                         </h6>
@@ -298,8 +298,8 @@
                         }}
                       </div>
                       <!-- <div class="player-point">
-                                    <h6> 0</h6>
-                                    </div> -->
+                                        <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -337,7 +337,7 @@
                         <h6>
                           {{
                             formations.attackers.players[index]
-                              ? formations.attackers.players[index].name
+                              ? formations.attackers.players[index].name.toLowerCase()
                               : "name"
                           }}
                         </h6>
@@ -351,8 +351,8 @@
                         }}
                       </div>
                       <!-- <div class="player-point">
-                                    <h6> 0</h6>
-                                    </div> -->
+                                        <h6> 0</h6>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -366,7 +366,7 @@
     <Footer />
   </div>
 </template>
-<script>
+    <script>
 import { toast } from "bulma-toast";
 import axios from "axios";
 import Navbar from "../components/Navbar.vue";
@@ -446,9 +446,8 @@ export default {
   },
   methods: {
     getUser() {
-      // axios.get("http://lfl-app.herokuapp.com/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
       axios
-        .get("http://127.0.0.1:8000/api/viewuser/", {
+        .get("https://lfl-app.herokuapp.com/api/viewuser/", {
           headers: {
             Authorization: "Token " + localStorage.getItem("auth_token"),
           },
@@ -462,32 +461,26 @@ export default {
         });
     },
     submitTeam() {
-      // const fd = new FormData()
-      // fd.append('attackers', this.selectedPlayers.attackers.players)
-      // fd.append('midfielders', this.selectedPlayers.midfielders.players)
-      // fd.append('defenders', this.selectedPlayers.defender.players)
-      // fd.append('goalkeeper', this.selectedPlayers.gk)
-      // console.log(this.selectedPlayers)
-      // console.log(fd);
-
-      // let FormData = {
-      //     user: this.user,
-      //     attackers: this.selectedPlayers.attackers.players.id,
-      //     midfielders: this.selectedPlayers.midfielders.players.id,
-      //     defenders: this.selectedPlayers.defender.players.id,
-      //     goalkeepers: this.selectedPlayers.gk.id
-      // };
-
-      console.log(FormData);
-      axios
+      let combinedArray = [
+        ...this.selectedPlayers.defender.players,
+        ...this.selectedPlayers.midfielders.players,
+        ...this.selectedPlayers.attackers.players,
+        this.selectedPlayers.gk
+      ];
+      if(combinedArray.length < 11) {
+        this.error = `Team Selection not complete yet, ${ 11 - combinedArray.length} Player(s) left.`
+      } else {
+        axios
         .post(
-          "http://127.0.0.1:8000/api/createteam/",
+          "https://lfl-app.herokuapp.com/api/createteam/",
           {
             user: this.user[0].id,
             attackers: this.selectedPlayers.attackers.players.map((p) => p.id),
-            defenders: this.selectedPlayers.attackers.players.map((p) => p.id),
-            midfielders: this.selectedPlayers.midfielders.players.map((p) => p.id),
-            goalkeeper: [this.selectedPlayers.gk.id]
+            defenders: this.selectedPlayers.defender.players.map((p) => p.id),
+            midfielders: this.selectedPlayers.midfielders.players.map(
+              (p) => p.id
+            ),
+            goalkeeper: [this.selectedPlayers.gk.id],
           },
           {
             headers: {
@@ -495,14 +488,15 @@ export default {
             },
           }
         )
-        .then()
+        .then(() => this.$router.push('/myteam'))
         .catch((error) => {
           console.log(error);
         });
+      }
     },
     getPlayers() {
       axios
-        .get("http://127.0.0.1:8000/api/displayplayers/")
+        .get("https://lfl-app.herokuapp.com/api/displayplayers/")
         .then((response) => {
           console.log(response.data);
           this.players = response.data;
@@ -605,7 +599,7 @@ export default {
       }
 
       if (player.position === "gk") {
-        this.formations.gk = { name: player.lastname, team: player.team };
+        this.formations.gk = { name: player.username, team: player.team };
         this.selectedPlayers.gk = player;
       }
 
@@ -620,7 +614,7 @@ export default {
         //     const countDefenders = (value, arr) => arr.filter(x => x.team === value).length + 1;
         // console.log(countDefenders(player.team, this.selectedPlayers.defender.players))
         this.formations.defender.players.push({
-          name: player.lastname,
+          name: player.username,
           team: player.team,
         });
         this.selectedPlayers.defender.players.push(player);
@@ -635,7 +629,7 @@ export default {
             "Max amount of players for midfield position already selected");
         }
         this.formations.midfielders.players.push({
-          name: player.lastname,
+          name: player.username,
           team: player.team,
         });
         this.selectedPlayers.midfielders.players.push(player);
@@ -650,7 +644,7 @@ export default {
             "Max amount of players for forward position already selected");
         }
         this.formations.attackers.players.push({
-          name: player.lastname,
+          name: player.username,
           team: player.team,
         });
         this.selectedPlayers.attackers.players.push(player);
@@ -692,20 +686,21 @@ export default {
     },
     searchPlayers() {
       if (!this.search) {
-        const result = this.players.filter((player) => {
-          return player.position == this.selectedPosition;
-        });
-        this.unselectedplayers = result;
+        // const result = this.players.filter((player) => {
+        //   return player.position == this.selectedPosition;
+        // });
+        // this.unselectedplayers = result;
       } else {
-        this.unselectedplayers = this.unselectedplayers.filter((player) =>
-          player.firstname.toLowerCase().includes(this.search.toLowerCase())
+        this.unselectedplayers = this.players.filter((player) =>
+          player.firstname.toLowerCase().includes(this.search.toLowerCase()) || player.username.toLowerCase().includes(this.search.toLowerCase()) 
+          || player.team.toLowerCase().includes(this.search.toLowerCase()) || player.lastname.toLowerCase().includes(this.search.toLowerCase())
         );
       }
     },
   },
 };
 </script>
-<style scoped lang=scss>
+    <style scoped lang=scss>
 .field {
   background-image: url(https://i.pinimg.com/originals/d7/b0/55/d7b05539aac8c5416c73ca046f977742.jpg);
   height: 900px;
@@ -813,6 +808,11 @@ export default {
   font-family: "Roboto";
   text-transform: capitalize;
   cursor: pointer;
+  font-size: 14px;
+}
+
+#player-pos {
+  color: #bb007d;
 }
 
 .player-select-holder .fa-plus {
