@@ -124,7 +124,7 @@ export default {
             // })
         // },
         getPlayers(){
-            axios.get("http://lfl-app.herokuapp.com/api/singleuserteam/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
+            axios.get("https://lfl-app.herokuapp.com/api/singleuserteam/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
             .then(response=>{
                 this.team.defenders.players = response.data[0].defenders
                 this.team.midfielders.players = response.data[0].midfielders
