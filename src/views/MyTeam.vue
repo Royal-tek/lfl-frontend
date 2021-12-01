@@ -19,7 +19,7 @@
                             <div class="my-1 gk">
                             <h6> {{ gk ? gk.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <div class="gk-player-point">{{ gk.playerpoint[gk.playerpoint.length] ? gk.playerpoint[team.gk[0].playerpoint.length] : 'x' }}</div>
+                            <div class="gk-player-point">{{ gk.playerpoint[gk.playerpoint.length - 1] ? gk.playerpoint[team.gk[0].playerpoint.length - 1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
                     
@@ -29,7 +29,7 @@
                             <div class="player-info my-1">
                             <h6> {{ defender ? defender.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length] ? defender.playerpoint[defender.playerpoint.length] : 'x' }}</div>
+                            <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length -1] ? defender.playerpoint[defender.playerpoint.length - 1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                             <div class="player-info my-1">
                             <h6> {{ midfielder ? midfielder.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <div class="player-point">{{ midfielder.playerpoint[midfielder.playerpoint.length] ? midfielder.playerpoint[midfielder.playerpoint.length] : 'x' }}</div>
+                            <div class="player-point">{{ midfielder.playerpoint[midfielder.playerpoint.length - 1] ? midfielder.playerpoint[midfielder.playerpoint.length - 1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
                            <div class="player-info my-1">
                             <h6> {{ attacker ? attacker.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length] ? attacker.playerpoint[attacker.playerpoint.length] : 'x' }}</div>
+                            <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length - 1] ? attacker.playerpoint[attacker.playerpoint.length - 1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
                 </div>
