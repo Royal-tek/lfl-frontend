@@ -2,12 +2,12 @@
 
     <footer
         class="text-center text-lg-start text-dark"
-        style="background-color: #ECEFF1"
+        style="background-color: #181818"
         >
     <!-- Section: Social media -->
     <section
             class="d-flex justify-content-around p-4 text-white"
-            style="background-color: #21D192"
+            style="background-color: rgba(0, 0, 0, 0.8)"
             >
     <!-- Left -->
     <div class="me-5">
@@ -127,9 +127,9 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color:#21D192">
+    <div class="text-center p-3" style="background-color:#111; color: #fff">
     &copy;
-    <a class="text-dark" href="https://www.instagram.com/heis__royal"
+    <a style="color: #fff" class="text-dark" href="https://www.instagram.com/heis__royal"
         >PROTEK</a
         >
     </div>
@@ -146,3 +146,9 @@ export default {
     
 }
 </script>
+
+<style scoped>
+    a, p, h6 {
+        color: #fff !important;
+    }
+</style>

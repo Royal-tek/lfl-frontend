@@ -24,11 +24,16 @@
             v-if="error"
           >
             <p class="text-center text-uppercase">{{ error }}</p>
-            <!-- <span class="fa fas-book close-message" @click="closeError">X</span> -->
             <i
               class="fas fa-window-close close-message"
               @click="closeError"
             ></i>
+          </div>
+          <div
+            class="error-message alert alert-danger col-12 text-center"
+           v-if="enableSave.error"
+          >
+            <p class="text-center text-uppercase">{{ enableSave.error }}</p>
           </div>
           <div
             class="error-message alert alert-danger col-12 text-center"
@@ -85,13 +90,6 @@
               value="Edit Formation"
               @click="editFormation"
             />
-            <p
-              v-if="buildField == true"
-              class="text-center text-uppercase hidden-appear-text alert"
-              style="color: #16b37c"
-            >
-              Click on image icons to select players for your team
-            </p>
             <div v-if="buildField">
               <div class="player-select-holder">
                 <div style="justify-content: left" class="position-holder">
@@ -108,10 +106,10 @@
                     <option value="fwd">Forwards</option>
                   </select>
                   <!-- <div>
-                                    <b>Team:</b> <select class="select-position" @change="showTeamPlayers(selectedTeam)"> 
-                                    <option value="" v-for="(team, index) in teams" :key="index">{{ team }}</option>
-                                    </select>
-                                </div> -->
+                        <b>Team:</b> <select class="select-position" @change="showTeamPlayers(selectedTeam)"> 
+                        <option value="" v-for="(team, index) in teams" :key="index">{{ team }}</option>
+                        </select>
+                    </div> -->
                 </div>
                 <input
                   type="search"
@@ -143,9 +141,27 @@
                   </span>
                 </div>
               </div>
+               <div
+              v-if="buildField == true"
+              v-show="teamPlayers.length > 0"
+              class="picked-players"
+            >
+            <!-- {{ captain.id }}  -->
+            <div class="cap-title">Choose Captain</div>
+            <div class="team-player" v-for="(player, index) in teamPlayers" :key="index" @click="captain = player"
+            :class="player === captain ? 'captain' : 'not-cap'"  
+            >
+              <span class="player-name">{{ player.username.toLowerCase() }}</span>
+              <span class="captain-icon">
+                <i class="fa fa-copyright"></i>
+              </span>
+            </div>
+            </div>
             </div>
             <button
               v-if="buildField == true"
+              :style="!enableSave.value ? 'opacity: 0.5' : 'opacity: 1'"
+              :disabled="!enableSave.value"
               class="btn text-uppercase submit-team-button py-2 mb-3 px-3 mt-2"
               style="background-color: #05d88e; color: #fff"
               @click="submitTeam"
@@ -174,7 +190,7 @@
                         <span
                           class="remove-player"
                           v-if="formations.gk"
-                          @click="removePlayer(0, 'gk')"
+                          @click="removePlayer(0, 'gk', formations.gk)"
                         >
                           <i class="fa fa-times"></i>
                         </span>
@@ -217,7 +233,7 @@
                         <span
                           class="remove-player"
                           v-if="formations.defender.players[index]"
-                          @click="removePlayer(index, 'def')"
+                          @click="removePlayer(index, 'def', formations.defender.players[index])"
                         >
                           <i class="fa fa-times"></i>
                         </span>
@@ -269,7 +285,7 @@
                         <span
                           class="remove-player"
                           v-if="formations.midfielders.players[index]"
-                          @click="removePlayer(index, 'mid')"
+                          @click="removePlayer(index, 'mid', formations.midfielders.players[index])"
                         >
                           <i class="fa fa-times"></i>
                         </span>
@@ -322,9 +338,9 @@
                         <span
                           class="remove-player"
                           v-if="formations.attackers.players[index]"
-                          @click="removePlayer(index, 'fwd')"
+                          @click="removePlayer(index, 'fwd', formations.attackers.players[index])"
                         >
-                          <i class="fa fa-times"></i>
+                          <i class="fas fa-times"></i>
                         </span>
                         <img
                           src="../assets/images/black.png"
@@ -414,6 +430,8 @@ export default {
         },
         disabled: false,
       },
+      teamPlayers: [],
+      captain: {},
       error: null,
       buildField: false,
       show: true,
@@ -433,6 +451,10 @@ export default {
           players: [],
         },
       },
+      enableSave: {
+        value: true,
+        error: ""
+      }
     };
   },
   mounted() {
@@ -442,7 +464,7 @@ export default {
   created() {
     setTimeout(() => {
       this.unselectedplayers = this.players;
-    }, 1000);
+    }, 5000);
   },
   methods: {
     getUser() {
@@ -461,12 +483,20 @@ export default {
         });
     },
     submitTeam() {
+      if(!this.enableSave.value) {
+        this.enableSave.value = "You have selected more than 3 players from a team"
+        setTimeout(() => {
+          this.enableSave.error = ""
+        }, 4000)
+      }
+
       let combinedArray = [
         ...this.selectedPlayers.defender.players,
         ...this.selectedPlayers.midfielders.players,
         ...this.selectedPlayers.attackers.players,
         this.selectedPlayers.gk
       ];
+      
       if(combinedArray.length < 11) {
         this.error = `Team Selection not complete yet, ${ 11 - combinedArray.length} Player(s) left.`
       } else {
@@ -481,6 +511,7 @@ export default {
               (p) => p.id
             ),
             goalkeeper: [this.selectedPlayers.gk.id],
+            captain: [this.captain.id]
           },
           {
             headers: {
@@ -608,11 +639,12 @@ export default {
           this.formations.defender.players.length ===
           this.formations.defender.amount
         ) {
-          return (this.playerError =
-            "Max amount of players for defender position already selected");
+            this.playerError = "Max amount of players for defender position already selected"
+              setTimeout(() => {
+            this.playerError = ""
+          }, 4000)
+          return
         }
-        //     const countDefenders = (value, arr) => arr.filter(x => x.team === value).length + 1;
-        // console.log(countDefenders(player.team, this.selectedPlayers.defender.players))
         this.formations.defender.players.push({
           name: player.username,
           team: player.team,
@@ -654,16 +686,49 @@ export default {
         ...this.selectedPlayers.defender.players,
         ...this.selectedPlayers.midfielders.players,
         ...this.selectedPlayers.attackers.players,
+        this.selectedPlayers.gk
       ];
+      this.teamPlayers = combinedArray
+
       const countPlayers = (value, arr) =>
         arr.filter((x) => x.team === value).length;
-      if (countPlayers(player.team, combinedArray) >= 3) {
-        return console.log("Maximum players for team gotten already");
+      if (countPlayers(player.team, combinedArray) > 3) {
+        this.enableSave.value = false
+        this.enableSave.error = "You have more than 3 players from a team"
+        setTimeout(() => {
+          this.enableSave.error = ""
+        }, 4000)
+      } else {
+        this.enableSave.value = true
+        this.enableSave.error = ""
+      }
+    },
+    removePlayer(index, position, player) {
+      // COUNT ARRAY AND CHECK IF PLAYERS FROM TEAM HAS BEEN REDUCED TO THREE
+      let combinedArray = [
+        ...this.selectedPlayers.defender.players,
+        ...this.selectedPlayers.midfielders.players,
+        ...this.selectedPlayers.attackers.players,
+        this.selectedPlayers.gk
+      ];
+
+      this.teamPlayers = combinedArray
+
+      const countPlayers = (value, arr) =>
+        arr.filter((x) => x.team === value).length;
+      if (countPlayers(player.team, combinedArray) > 4) {
+        this.enableSave.value = false
+        this.enableSave.error = "You have more than 3 players from a team"
+        setTimeout(() => {
+          this.enableSave.error = ""
+        }, 4000)
+      } else {
+        this.enableSave.value = true
+        this.enableSave.error = ""
       }
       console.log(countPlayers(player.team, combinedArray));
-    },
-    removePlayer(index, position) {
-      // console.log(index, position)
+
+      
       if (position === "gk") {
         this.formations.gk = "";
         this.selectedPlayers.gk = "";
@@ -719,13 +784,18 @@ export default {
 }
 .error-message {
   justify-content: center;
-
+  position: fixed;
+  width: 30%;
+  margin: 0 auto;
+  z-index: 100 !important;
+  bottom: 10px;
+  left: 10px;
   .close-message {
     float: right;
     margin-top: -30px;
     cursor: pointer;
     font-size: 22px;
-    color: #05d88e;
+    color: #8f0000;
   }
 }
 .player {
@@ -786,6 +856,7 @@ export default {
     }
   }
   .error-message {
+    align-items: center;
     p {
       font-size: 15px;
     }
@@ -845,7 +916,7 @@ export default {
   position: relative;
 }
 
-.position-holder {
+.position-holder, .cap-title {
   background-color: #569424;
   color: #fff;
   text-transform: capitalize;
@@ -855,6 +926,9 @@ export default {
   left: 0;
   opacity: 1;
   z-index: 1;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .position-holder b {
@@ -916,13 +990,14 @@ input[type="submit"] {
 
 .player-team {
   margin: -4px;
-  font-size: 13px;
+  font-size: 12px;
   color: #fff;
   background-color: #35572aa6;
   padding: 5px;
   font-family: "Roboto";
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  text-transform: uppercase;
   /* width: 100%; */
 }
 
@@ -935,10 +1010,32 @@ input[type="submit"] {
   width: 40px;
 }
 
-.alert {
-  font-family: inherit;
-  font-weight: bold;
+.picked-players {
+  text-align: left;
+  box-shadow: 0 0 6px 2px #ccc;
+  margin-top: 10px;
+  height: 300px;
+  overflow: auto;
 }
+
+.team-player {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #f3f3f3;
+  text-transform: capitalize;
+}
+
+.team-player:hover {
+  background-color: #f3f3f3;
+}
+
+.captain {
+  background-color: #c5f39f;
+  font-weight: bold
+}
+
 @media (max-width: 400px) {
   .player-row {
     width: 100%;
@@ -950,6 +1047,10 @@ input[type="submit"] {
 
   .pos {
     width: 30px;
+  }
+
+  .error-message {
+    width: 300px;
   }
 }
 </style>

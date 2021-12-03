@@ -15,41 +15,53 @@
                 <div class="container">
                     <div class="row">
                         <div class="col text-center player" v-for="gk in team.gk" :key="gk.id">
+                            <div class="gk-info" @click="displayInfo(gk)">
+                                <i class="fa fa-info"></i>
+                            </div>
                             <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
                             <div class="my-1 gk">
                             <h6> {{ gk ? gk.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <div class="gk-player-point">{{ gk.playerpoint[gk.playerpoint.length] ? gk.playerpoint[team.gk[0].playerpoint.length] : 'x' }}</div>
+                            <div class="gk-player-point">{{ gk.playerpoint[gk.playerpoint.length - 1] ? gk.playerpoint[team.gk[0].playerpoint.length - 1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col text-center player"  v-for="(defender, index) in team.defenders.players" :key="index">
+                            <div class="info" @click="displayInfo(defender)">
+                                <i class="fa fa-info"></i>
+                            </div>
                             <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
                             <div class="player-info my-1">
                             <h6> {{ defender ? defender.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length] ? defender.playerpoint[defender.playerpoint.length] : 'x' }}</div>
+                            <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length - 1] ? defender.playerpoint[defender.playerpoint.length - 1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col text-center player"  v-for="(midfielder, index) in team.midfielders.players" :key="index">
+                            <div class="info" @click="displayInfo(midfielder)">
+                                <i class="fa fa-info"></i>
+                            </div>
                             <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
                             <div class="player-info my-1">
                             <h6> {{ midfielder ? midfielder.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <div class="player-point">{{ midfielder.playerpoint[midfielder.playerpoint.length] ? midfielder.playerpoint[midfielder.playerpoint.length] : 'x' }}</div>
+                            <div class="player-point">{{ midfielder.playerpoint[midfielder.playerpoint.length - 1] ? midfielder.playerpoint[midfielder.playerpoint.length - 1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col text-center player"  v-for="(attacker, index) in team.attackers.players" :key="index">
+                            <div class="info" @click="displayInfo(attacker)">
+                                <i class="fa fa-info"></i>
+                            </div>
                            <img src="../assets/images/black.png" class="img-fluid" alt="player icon">
                            <div class="player-info my-1">
                             <h6> {{ attacker ? attacker.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length] ? attacker.playerpoint[attacker.playerpoint.length] : 'x' }}</div>
+                            <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length - 1] ? attacker.playerpoint[attacker.playerpoint.length -1].weekly_points : 'x' }}</div>
                         </div>
                     </div>
                 </div>
@@ -75,6 +87,50 @@
             </div>
         </div>
         </div>
+
+        
+<div v-if="showModal" class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Landmark League</h5>
+        <button type="button" class="close btn-danger btn" data-dismiss="modal" aria-label="Close" @click="showModal = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="jumbo-tron">
+            <div class="player-name">{{ modalContent.firstname }} {{modalContent.lastname}}</div>
+            <div class="player-position">
+                <span v-if="modalContent.position == 'gk'">Goalkeeper</span>
+                <span v-if="modalContent.position == 'def'">Defender</span>
+                <span v-if="modalContent.position == 'mid'">Midfielder</span>
+                <span v-if="modalContent.position == 'fwd'">Forward</span>
+            </div>
+            <div class="team">{{modalContent.team}}</div>
+        </div>
+        <div class="stats">
+            <div>
+                <div class="name">Form</div>
+                <div class="value">1.5</div>
+            </div>
+            <div>
+                <div class="name">This Week Points</div>
+                <div class="value">6</div>
+            </div>
+            <div>
+                <div class="name">Total Points</div>
+                <div class="value">50</div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="showModal = false">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Make Captain &copy;</button> -->
+      </div>
+    </div>
+  </div>
+</div>
         <!-- <button @click="showalert()"> Click me</button> -->
         <Footer/>
     </div>
@@ -105,6 +161,13 @@ export default {
                 attackers: {
                     players: []
                 },
+            },
+            showModal: false,
+            modalContent: {
+                firstname: "",
+                lastname: "",
+                position: "",
+                team: ""
             }
         }
     },
@@ -113,24 +176,21 @@ export default {
         this.getPlayers()
     },
     methods:{
-            // showalert(){
-            //     toast({
-            //     message : 'Account created, please log in',
-            //     type : 'is-success',
-            //     dismissible : true,
-            //     pauseOnHover : true,
-            //     duration : 2000,
-            //     position : 'bottom-right'
-            // })
-        // },
+        displayInfo(player){
+            this.modalContent.firstname = player.firstname
+            this.modalContent.lastname = player.lastname
+            this.modalContent.position = player.position
+            this.modalContent.team = player.team
+            this.showModal = true
+        },
         getPlayers(){
-            axios.get("http://lfl-app.herokuapp.com/api/singleuserteam/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
+            axios.get("https://lfl-app.herokuapp.com/api/singleuserteam/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
             .then(response=>{
-                this.team.defenders.players = response.data[0].defenders
-                this.team.midfielders.players = response.data[0].midfielders
-                this.team.attackers.players = response.data[0].attackers
-                this.team.gk = response.data[0].goalkeeper
-                this.user = response.data[0].user
+                this.team.defenders.players = response.data[response.data.length - 1].defenders
+                this.team.midfielders.players = response.data[response.data.length - 1].midfielders
+                this.team.attackers.players = response.data[response.data.length - 1].attackers
+                this.team.gk = response.data[response.data.length - 1].goalkeeper
+                this.user = response.data[response.data.length - 1].user
                 console.log(response.data)
             })
             .catch(error=>{
@@ -151,8 +211,50 @@ export default {
     background-repeat: no-repeat;
 }
 
-.about-holder {
-    /* margin-top: ; */
+.modal {
+    display: block;
+    background: rgba(0,0,0,0.4)
+}
+
+.jumbo-tron {
+    height: 100px;
+    width: 100%;
+    background-color: #000000;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.jumbo-tron .player-name {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.jumbo-tron .player-position {
+    font-size: 13px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    width: fit-content;
+    font-style: italic;
+    color: #000;
+    background-color: #00a27d;
+}
+
+.jumbo-tron .team {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.stats > div {
+    border-right: 1px solid #ccc;
+    padding: 10px;
 }
 
 .row {
@@ -174,6 +276,29 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+
+.info {
+    position: absolute;
+    right: 0;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.gk-info {
+    cursor: pointer;
+    position: absolute;
+    left: 57%;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: #000;
+    background-color: #fff;
+    cursor: pointer;
 }
 
 .gk {

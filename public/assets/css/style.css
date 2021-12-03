@@ -14,7 +14,7 @@
 
 /* @import '~sweetalert2/src/sweetalert2'; */
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #444444;
 }
 
@@ -29,7 +29,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Roboto', sans-serif ;
 }
 
 /*--------------------------------------------------------------
@@ -117,7 +117,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0 10px 30px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 15px;
   font-weight: 500;
   color: #fff;
@@ -309,7 +309,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #21D192;
 }
 #hero .btn-get-started {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Roboto', sans-serif ;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -377,7 +377,7 @@ section {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #aaaaaa;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif ;
 }
 .section-title h2::after {
   content: "";
@@ -393,7 +393,7 @@ section {
   font-size: 36px;
   font-weight: 700;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #556270;
 }
 
@@ -643,7 +643,7 @@ section {
   text-transform: uppercase;
   display: block;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif ;
   color: #556270;
 }
 .skills .progress .skill .val {
@@ -738,7 +738,7 @@ section {
   font-size: 36px;
   color: #d9232d;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif ;
   margin-bottom: 20px;
 }
 .pricing h4 sup {
@@ -786,7 +786,7 @@ section {
   transition: none;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Roboto', sans-serif ;
   font-weight: 600;
   transition: 0.3s;
 }
@@ -831,7 +831,7 @@ section {
   line-height: 26px;
   font-weight: 500;
   margin: 0 0 10px 28px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Roboto', sans-serif ;
 }
 .faq .faq-item p {
   font-size: 15px;
@@ -1424,7 +1424,7 @@ section {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Roboto', sans-serif ;
   color: #fff;
 }
 #footer .footer-top .social-links a {
