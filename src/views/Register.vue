@@ -15,6 +15,7 @@
                         </div>
                         <div class=" form-side col-md-5 col-sm-12">
                             <form action="" class="form" @submit.prevent="submitForm">
+                                
                                 <input type="text" v-model="first_name" placeholder="Firstname" class="form-control input-form shadow-none">
                                 <input type="text" v-model="last_name" placeholder="Lastname" class="form-control shadow-none">
                                 <input type="text" v-model="username" placeholder="Username" class="form-control shadow-none">

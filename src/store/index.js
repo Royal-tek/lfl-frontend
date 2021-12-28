@@ -10,7 +10,7 @@ export default createStore({
   state: {
     token : null,
     players : null,
-    error : "x"
+    error : ""
   },
   getters:{
     loggedIn : state =>{

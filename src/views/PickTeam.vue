@@ -473,6 +473,12 @@ export default {
             Authorization: "Token " + localStorage.getItem("auth_token"),
           },
         })
+        //   axios
+        // .get("http://127.0.0.1:8000/api/viewuser/", {
+        //   headers: {
+        // Authorization: "Token " + localStorage.getItem("auth_token"),
+        //   },
+        // })
         .then((response) => {
           this.user = response.data;
           console.log(response.data);
