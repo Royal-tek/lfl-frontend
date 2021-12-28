@@ -2,12 +2,12 @@
 
     <footer
         class="text-center text-lg-start text-dark"
-        style="background-color: #181818"
+        style="background-color: #ECEFF1"
         >
     <!-- Section: Social media -->
     <section
             class="d-flex justify-content-around p-4 text-white"
-            style="background-color: rgba(0, 0, 0, 0.8)"
+            style="background-color: #21D192"
             >
     <!-- Left -->
     <div class="me-5">
@@ -17,22 +17,17 @@
 
     <!-- Right -->
     <div>
-        <a href="" class="text-white me-4">
-        <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="" class="text-white me-4">
-        <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="text-white me-4">
+    
+        <a href="https://www.google.com" target="_blank" class="text-white me-4">
         <i class="fab fa-google"></i>
         </a>
-        <a href="" class="text-white me-4">
+        <a href="https://www.instagram.com/heis__royal" target="_blank" class="text-white me-4">
         <i class="fab fa-instagram"></i>
         </a>
-        <a href="" class="text-white me-4">
+        <a href="https://www.linkedin.com" target="_blank" class="text-white me-4">
         <i class="fab fa-linkedin"></i>
         </a>
-        <a href="" class="text-white me-4">
+        <a href="https://www.github.com" target="_blank" class="text-white me-4">
         <i class="fab fa-github"></i>
         </a>
     </div>
@@ -95,13 +90,16 @@
 
             </p>
             <p>
-            <a href="#!" class="text-dark">Latest News</a>
+            <router-link to="/latestnews" class="text-dark">Latest News</router-link>
+            <!-- <a href="#!" class="text-dark">Latest News</a> -->
             </p>
             <p>
-            <a href="#!" class="text-dark">Leader Boards</a>
+            <router-link to="/ranking" class="text-dark">Leader Boards</router-link>
+            <!-- <a href="#!" class="text-dark">Leader Boards</a> -->
             </p>
             <p>
-            <a href="#!" class="text-dark">Contact Us</a>
+            <router-link to="/contact-us" class="text-dark">Contact Us</router-link>
+            <!-- <a href="contact-us" class="text-dark">Contact Us</a> -->
             </p>
         </div>
         <!-- Grid column -->
@@ -115,7 +113,7 @@
                 style="width: 60px; background-color: #7c4dff; height: 2px"
                 />
             <p><i class="fas fa-home mr-3"></i> Landmark University</p>
-            <p><i class="fas fa-envelope mr-3"></i> LFL@lmu.edu.ng</p>
+            <p><i class="fas fa-envelope mr-3"></i> lfl@gmail.com</p>
             <!-- <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p> -->
             <p><i class="fas fa-print mr-3"></i> Protek@gmail.com </p>
         </div>
@@ -127,9 +125,9 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color:#111; color: #fff">
+    <div class="text-center p-3" style="background-color:#21D192">
     &copy;
-    <a style="color: #fff" class="text-dark" href="https://www.instagram.com/heis__royal"
+    <a class="text-dark" href="https://www.instagram.com/heis__royal"
         >PROTEK</a
         >
     </div>
@@ -146,9 +144,3 @@ export default {
     
 }
 </script>
-
-<style scoped>
-    a, p, h6 {
-        color: #fff !important;
-    }
-</style>

@@ -72,7 +72,7 @@ export default {
 
                 }
                 
-                axios.post('http://127.0.0.1:8000/account/register/', Formdata)
+                axios.post('https://lfl-app.herokuapp.com/account/register/', Formdata)
                 .then(response => {
                     toast({
                 message : 'Account created, please log in',

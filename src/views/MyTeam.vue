@@ -10,7 +10,7 @@
             </div>
         </section>
         
-        <div class="display">
+        <div class="display" >
             <div class="field">
                 <div class="container">
                     <div class="row">
@@ -89,8 +89,8 @@
         </div>
 
         
-<div v-if="showModal" class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div v-if="showModal" class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" @click="showModal = false">
+  <div class="modal-dialog modal-dialog-centered" role="document" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Landmark League</h5>

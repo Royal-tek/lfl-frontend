@@ -1,4 +1,4 @@
-    <template>
+<template>
   <div>
     <Navbar />
 
@@ -147,7 +147,7 @@
               class="picked-players"
             >
             <!-- {{ captain.id }}  -->
-            <div class="cap-title">Choose Captain</div>
+            <!-- <div class="cap-title">Choose Captain</div>
             <div class="team-player" v-for="(player, index) in teamPlayers" :key="index" @click="captain = player"
             :class="player === captain ? 'captain' : 'not-cap'"  
             >
@@ -155,7 +155,7 @@
               <span class="captain-icon">
                 <i class="fa fa-copyright"></i>
               </span>
-            </div>
+            </div> -->
             </div>
             </div>
             <button
@@ -366,9 +366,9 @@
                             : "none"
                         }}
                       </div>
-                      <!-- <div class="player-point">
+                      <div class="player-point">
                                         <h6> 0</h6>
-                                        </div> -->
+                                        </div>
                     </div>
                   </div>
                 </div>
@@ -378,12 +378,11 @@
         </div>
       </div>
     </div>
-    <!-- {{selectedPlayers}} -->
     <Footer />
-  </div>
+    </div>
 </template>
     <script>
-import { toast } from "bulma-toast";
+// import { toast } from "bulma-toast";
 import axios from "axios";
 import Navbar from "../components/Navbar.vue";
 import PlayerSelectBar from "../components/PlayerSelectBar.vue";
@@ -431,7 +430,7 @@ export default {
         disabled: false,
       },
       teamPlayers: [],
-      captain: {},
+      // captain: {},
       error: null,
       buildField: false,
       show: true,
@@ -510,8 +509,8 @@ export default {
             midfielders: this.selectedPlayers.midfielders.players.map(
               (p) => p.id
             ),
-            goalkeeper: [this.selectedPlayers.gk.id],
-            captain: [this.captain.id]
+            goalkeeper: [this.selectedPlayers.gk.id]
+            // captain: [this.captain.id]
           },
           {
             headers: {
@@ -519,8 +518,25 @@ export default {
             },
           }
         )
-        .then(() => this.$router.push('/myteam'))
+        .then((response) => {
+          this.$swal({
+                icon:'success',
+                title: 'Success',
+                text:'TEAM CREATED SUCCESSFULLY',
+                footer:'<i>You will be redirected to your team page now so you can manage your team</i>'
+          })
+          .then((result) => {
+            if(result.isConfirmed) this.$router.push('/myteam')
+            
+          })
+          })
         .catch((error) => {
+          this.$swal({
+                icon:'error',
+                title: 'Failed',
+                text:'FAILED TO CREATE TEAM',
+                // footer:'<i>You will be redirected to your team page now so you can manage your team</i>'
+          })
           console.log(error);
         });
       }
@@ -1031,10 +1047,10 @@ input[type="submit"] {
   background-color: #f3f3f3;
 }
 
-.captain {
+/* .captain {
   background-color: #c5f39f;
   font-weight: bold
-}
+} */
 
 @media (max-width: 400px) {
   .player-row {
