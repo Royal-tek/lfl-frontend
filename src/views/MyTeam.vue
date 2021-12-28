@@ -35,11 +35,7 @@
                             <div class="player-info my-1">
                             <h6> {{ defender ? defender.username.toLowerCase() : "name" }}</h6>
                             </div>
-<<<<<<< HEAD
                             <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length - 1] ? defender.playerpoint[defender.playerpoint.length - 1].weekly_points : 'x' }}</div>
-=======
-                            <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length -1] ? defender.playerpoint[defender.playerpoint.length - 1].weekly_points : 'x' }}</div>
->>>>>>> d1f31443eb161a646da926cec198f123b35b7de8
                         </div>
                     </div>
 
@@ -65,11 +61,7 @@
                            <div class="player-info my-1">
                             <h6> {{ attacker ? attacker.username.toLowerCase() : "name" }}</h6>
                             </div>
-<<<<<<< HEAD
                             <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length - 1] ? attacker.playerpoint[attacker.playerpoint.length -1].weekly_points : 'x' }}</div>
-=======
-                            <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length - 1] ? attacker.playerpoint[attacker.playerpoint.length - 1].weekly_points : 'x' }}</div>
->>>>>>> d1f31443eb161a646da926cec198f123b35b7de8
                         </div>
                     </div>
                 </div>
