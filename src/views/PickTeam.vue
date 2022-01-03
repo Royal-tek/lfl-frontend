@@ -10,7 +10,7 @@
           
           <div class="selectTeamModalHolder">
               <div class="selectTeam">
-                <i class="fa fa text-white">X</i>
+                <i class="fas fa-times-circle fa-7x my-3 text-success"></i>
                 <h1 class="selectteamh1 pt-3 text-uppercase">Team selection closed for the week</h1>
                 <div class="selectTeamFooter">
                   <p>Team selection will be open in <span class="text-success">1000 </span>seconds</p>
