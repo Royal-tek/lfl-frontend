@@ -487,7 +487,7 @@ export default {
   methods: {
     getSelectTeamStatus(){
       axios
-      .get("http://127.0.0.1:8000/api/selectteam/")
+      .get("https://lfl-app.herokuapp.com/api/selectteam/")
       .then(response =>{
         this.selectTeam = response.data
         console.log(response.data)
