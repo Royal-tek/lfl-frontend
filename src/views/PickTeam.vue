@@ -4,6 +4,23 @@
 
     <!-- <PlayerSelectBar/> -->
     <div class="pickteam">
+      
+      <main v-for="status in selectTeam" :key="status">
+        <main v-if="status.select_team == false">
+          
+          <div class="selectTeamModalHolder">
+              <div class="selectTeam">
+                <i class="fa fa text-white">X</i>
+                <h1 class="selectteamh1 pt-3 text-uppercase">Team selection closed for the week</h1>
+                <div class="selectTeamFooter">
+                  <p>Team selection will be open in <span class="text-success">1000 </span>seconds</p>
+                </div>
+              </div>
+          </div>
+        </main>
+      </main>
+
+      
       <section
         id="breadcrumbs"
         class="breadcrumbs m-0"
@@ -396,6 +413,7 @@ export default {
   },
   data() {
     return {
+      selectTeam : [],
       user: "",
       players: [],
       teams: {
@@ -459,6 +477,7 @@ export default {
   mounted() {
     this.getPlayers();
     this.getUser();
+    this.getSelectTeamStatus();
   },
   created() {
     setTimeout(() => {
@@ -466,6 +485,15 @@ export default {
     }, 5000);
   },
   methods: {
+    getSelectTeamStatus(){
+      axios
+      .get("http://127.0.0.1:8000/api/selectteam/")
+      .then(response =>{
+        this.selectTeam = response.data
+        console.log(response.data)
+
+      })
+    },
     getUser() {
       axios
         .get("https://lfl-app.herokuapp.com/api/viewuser/", {
@@ -1073,6 +1101,55 @@ input[type="submit"] {
 
   .error-message {
     width: 300px;
+  }
+}
+.selectTeamModalHolder{
+  width: 100%;
+  position: fixed;
+  height: 100vh;
+  background-color: rgb(230, 219, 219);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  .selectTeam{
+    padding: 10px;
+    width: 40%;
+    height: 50%;
+    background-color: rgb(10, 9, 9);
+    z-index: 10001;
+    display: flex;
+    opacity: 1;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .selectteamh1{
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      
+    }
+    .selectTeamFooter{
+      position: absolute;
+      bottom: 0;
+      
+
+      p{
+        width:100%;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+
+        span{
+          font-size: 30px;
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
 </style>

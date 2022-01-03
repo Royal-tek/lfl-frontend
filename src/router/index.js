@@ -140,6 +140,7 @@ const routes = [
     name: 'PickTeam',
     component: PickTeam,
     meta:{
+      requiresLogin : true,
       enterClass:"animate__animated animate__fadeInLeft",
       leaveClass:"animate__animated animate__fadeOutRight",
     }
