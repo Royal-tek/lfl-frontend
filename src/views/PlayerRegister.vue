@@ -44,10 +44,7 @@
                                         </div>
 
                                         
-                                        <div class="input-group d-flex align-items-center">
-                                        <label class="text-muted mt-2 me-2">Display Image :</label>
-                                            <input type="file" @change="selectImage" class="form-control shadow-none">
-                                        </div>
+                                        
 
                                     </div>
 
@@ -140,7 +137,6 @@ export default {
                 firstname : "",
                 coach : "",
                 lastname : "",
-                image : "",
                 username : "",
                 position : "",
                 number: "",
@@ -168,8 +164,7 @@ export default {
             // console.log(this.registerInfo.image)
         },
         createPlayer(){
-            const fd = new FormData()
-            fd.append('playerimage.image', this.registerInfo.image)
+            const fd = new FormData() 
             fd.append('firstname', this.registerInfo.firstname)
             fd.append('lastname', this.registerInfo.lastname)
             fd.append('username', this.registerInfo.username)
