@@ -11,8 +11,13 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12 form-side">
                         <form @submit.prevent="login" class="form">
-                            <div>
-                                {{ this.$store.state.error}}
+                            <div class="error">
+                                <!-- {{ $store.state.error }} -->
+                                <div v-if="$store.state.error.error">Username: {{ $store.state.error.error.login[0]}}</div>
+                                <div v-if="$store.state.error.error">Password: {{ $store.state.error.error.password[0]}}</div>
+                            </div>
+                            <div class="loader" style="text-align: center" v-if="!this.$store.state.error && this.$store.state.loading">
+                                <img src="https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif" width="80">
                             </div>
                             <div class="input-group">
                                 <input type="text" class="form-control shadow-none" placeholder="Username" v-model="username">
@@ -35,7 +40,9 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" class="btn submit-button" value="Login">
+                                <button type="submit" class="btn submit-button">
+                                    Login
+                                </button>
                             </div>
                         </form>
                         </div>
@@ -57,8 +64,6 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex'
-// import axios from 'axios'
 export default {
     name : 'Login',
     data(){
@@ -95,23 +100,7 @@ export default {
             })
 
         }
-        // submitForm(){
-        //     const FormData = {
-        //         login : this.username,
-        //         password : this.password
-        //     }
-        //     axios.post('http://127.0.0.1:8000/account/login/', FormData)
-        //     .then(response =>{
-            
-        //     localStorage.setItem("auth_token", response.data.token)
-        //     this.$router.push('/')
-        //     })
-        //     .catch(error=>{
-        //         console.log(error.response.data)
-        //     })
-        // }
     },
-    // computed: mapState(['error']),
 }
 </script>
 
@@ -154,10 +143,13 @@ export default {
     }
     .submit-button{
         display: block;
-        margin: 0 auto;
+        margin: 5px auto;
+        font-family: inherit;
+        font-weight: bold;
         padding: 10px 15px;
         transition: all ease-in-out .5s;
         background-color: #07f19f;
+        width: 100%;
 
     &:hover{
         background-color: #049b66 !important;
@@ -198,6 +190,9 @@ export default {
     border-right: none !important;
 }
 
-
+.error {
+    color: red;
+    font-size: 14px;
+}
 </style>
 

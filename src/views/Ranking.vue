@@ -21,18 +21,10 @@
     </thead>
     <tbody>
         <tr>
-        <th scope="row">1</th>
-        <td><b>Royal</b> - royal's boys</td>
-        <td>1</td>
-        <td>100</td>
-        
-        </tr>
-        <tr>
-        <th scope="row">2</th>
-        <td><b>Noble</b> - noble's boys</td>
-        <td>1</td>
-        <td>50</td>
-        
+            <th scope="row">1</th>
+            <td><b>Royal</b> - royal's boys</td>
+            <td>1</td>
+            <td>100</td>
         </tr>
     </tbody>
             </table>
@@ -46,12 +38,16 @@
 // @ is an alias to /src
 import Footer from '../components/Footer.vue'
 import Navbar from '../components/Navbar.vue'
+// import axios from 'axios'
 
 export default {
   name: 'Ranking',
   components: {
     Footer,Navbar
   },
+  created(){
+    //   axios.get('')
+  }
 
 }
 </script>

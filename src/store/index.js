@@ -10,7 +10,8 @@ export default createStore({
   state: {
     token : null,
     players : null,
-    error : ""
+    error : "",
+    loading: false
   },
   getters:{
     loggedIn : state =>{
@@ -49,6 +50,7 @@ export default createStore({
 
   actions: {
     userLogin(context, usercredentials){
+      context.state.loading = true
       return new Promise((resolve, reject) => {
         axios.post('https://lfl-app.herokuapp.com/account/login/', {
           login : usercredentials.username,
@@ -56,6 +58,7 @@ export default createStore({
         })
         .then(response=>{
           context.commit('updateStorage', {token:response.data.token})
+          context.state.loading = false
           
           resolve()
           
@@ -63,6 +66,10 @@ export default createStore({
         .catch(error=>{
           // this.state.error.push(error.repsonse.data)
           context.commit('displayError', { error: error.response.data })
+          setTimeout(() => {
+            context.state.error = ""
+            context.state.loading = false
+          }, 5000)
           // console.log(error.response.data)
         })
       })
