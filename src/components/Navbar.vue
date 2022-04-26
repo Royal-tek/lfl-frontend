@@ -31,8 +31,8 @@
                 <li><router-link to="/pickteam" :class="{active : $route.name == 'PickTeam'}">Pick Team</router-link></li>
             </ul>
             </li>
-            <li><router-link to="/player-register" class="getstarted" :class="{active : $route.name == 'PlayerRegister'}"> Player Register</router-link></li>
-            <li v-if="user[0]"><li v-if="user[0].is_staff == true"><router-link to="/coach-admin" class="getstarted">Coach Admin</router-link></li></li>
+            <li v-if="user[0]"><li v-if="user[0].is_staff == true"><router-link to="/player-register" class="getstarted" :class="{active : $route.name == 'PlayerRegister'}"> Player Register</router-link></li></li>
+            <li v-if="user[0]"><li v-if="user[0].is_staff == true"><router-link to="/coach-admin" class="getstarted">Coach Admin</router-link></li> </li>
 
             <li v-if="!token"><router-link to="/login" class="getstarted">Login</router-link></li>
             <li v-if="token"><router-link to="/logout" class="getstarted">Logout</router-link></li>
