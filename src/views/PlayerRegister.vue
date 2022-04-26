@@ -178,7 +178,7 @@ export default {
             fd.append('coach', this.registerInfo.coach)
             fd.append('number', this.registerInfo.number)
 
-            axios.post("http://lfl-app.herokuapp.com/api/createplayers/", fd)
+            axios.post("https://lfl-app.herokuapp.com/api/createplayers/", fd)
             .then(response=>{
                 response.data
             })

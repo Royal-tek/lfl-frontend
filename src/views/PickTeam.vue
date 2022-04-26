@@ -487,7 +487,7 @@ export default {
   methods: {
     getSelectTeamStatus(){
       axios
-      .get("https://lfl-app.herokuapp.com/api/selectteam/")
+      .get("https://lfl-app.herokuapp.com/api/createteam/")
       .then(response =>{
         this.selectTeam = response.data
         console.log(response.data)
