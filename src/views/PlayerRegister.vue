@@ -159,10 +159,10 @@ export default {
                 console.log(error)
             })
         },
-        selectImage(event){
-            this.registerInfo.image = event.target.files[0]
-            // console.log(this.registerInfo.image)
-        },
+        // selectImage(event){
+        //     this.registerInfo.image = event.target.files[0]
+        //     // console.log(this.registerInfo.image)
+        // },
         createPlayer(){
             const fd = new FormData() 
             fd.append('firstname', this.registerInfo.firstname)
