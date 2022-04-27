@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-
+  <Payment/>
     <!-- <PlayerSelectBar/> -->
     <div class="pickteam">
       
@@ -383,9 +383,9 @@
                             : "none"
                         }}
                       </div>
-                      <div class="player-point">
+                      <!-- <div class="player-point">
                                         <h6> 0</h6>
-                                        </div>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -398,8 +398,9 @@
     <Footer />
     </div>
 </template>
-    <script>
-// import { toast } from "bulma-toast";
+
+<script>
+import Payment from '../components/Payment.vue'
 import axios from "axios";
 import Navbar from "../components/Navbar.vue";
 import PlayerSelectBar from "../components/PlayerSelectBar.vue";
@@ -410,6 +411,7 @@ export default {
     Navbar,
     Footer,
     PlayerSelectBar,
+    Payment
   },
   data() {
     return {
