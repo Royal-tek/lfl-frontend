@@ -1,7 +1,12 @@
 <template>
   <div class="payment">
+      <div class="close-btn">
+          <span @click="$store.state.showPaymentGateway = false">
+              &times;
+          </span>
+      </div>
       <div class="trans">
-          <h1>Click on the button below to continue</h1>
+          <h1>Make payment to complete team selection process</h1>
         <paystack
         buttonClass="'button-class btn btn-primary'"
         buttonText="Make Payment"
@@ -10,7 +15,7 @@
         :amount="amount"
         :reference="reference"
         :onSuccess="callback"
-        :onCanel="close">Make Payment
+        :onCancel="onCancel">Make Payment
     </paystack>
     </div>
     <!-- <button></button> -->
@@ -18,7 +23,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import paystack from "vue3-paystack";
 
 export default {
@@ -37,9 +42,10 @@ export default {
       },
     },
     data(){
-        // const user = JSON.parse(localStorage.getItem("user"))
+        // const email = localStorage.getItem("email")
         return {
-          publicKey: "pk_live_f7ddf73d9978d268bdfcde7e999899a640c71063", //paystack public key
+          publicKey: "pk_live_f7ddf73d9978d268bdfcde7e999899a640c71063",
+          testKey: "pk_test_e91ae16de3027ab64fdeea3ee576634b03519de8", //paystack public key
           email: "patrickjoseph2121@gmail.com", // Customer email
           amount: 1000 * 100, // in kobo
           closedMessage: ''
@@ -47,15 +53,19 @@ export default {
     },
     methods: {
       callback(){
-        // const user = JSON.parse(localStorage.getItem("user")) // getting user from localStorage
-        // const totalPrice = this.$store.getters.cartTotal
-        axios.post('/api/transaction/save', {})
+        axios.get(`https://lfl-app.herokuapp.com/api/verify/payment/${this.reference}/`)
         .then(res => {
-            
+            if(res.data.status){
+              this.$store.state.showPaymentGateway = false
+            }
         })
+        .catch(err => {
+          console.log(err)
+        })
+        console.log("Payment done!")
       },
-      close(){
-          this.closedMessage = "Transaction ended"
+      onCancel(){
+          this.$store.state.showPaymentGateway = false
       },
       closeAlert() {
           
@@ -66,15 +76,17 @@ export default {
 
 <style scoped>
  .payment {
-     position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      height: 100%;
-      overflow: auto;
-      width: 100%;
-      background: rgba(0,0,0,0.7);
-      padding: 10px 0px;
+    position: fixed;
+    overflow: hidden;
+    padding: 20px;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    padding: 10px 0px;
       /* display: grid;
      place-items: center; */
  }
@@ -82,17 +94,23 @@ export default {
  h1 {
      color: #fff;
      margin-bottom: 20px;
+     font-size: 28px;
+     font-family: inherit;
+ }
+
+ p {
+     font-family: inherit;
  }
 
  .btn {
-    padding: 7px;
+    padding: 10px 20px;
     border-radius: 3px;
     border: none;
     outline: none;
     font-weight: bold;
     font-family: inherit;
     cursor: pointer;
-    background-color: green;
+    background-color: #00b173;
     color: #fff;
  }
 
@@ -102,5 +120,18 @@ export default {
      align-items:center;
      height: 100%;
      flex-direction: column;
+ }
+
+ .close-btn {
+     font-size: 35px;
+     color: #fff;
+     text-align: right;
+     position: absolute;
+     right: 30px;
+     top: 0;
+ }
+
+ .close-btn span {
+     cursor: pointer;
  }
 </style>

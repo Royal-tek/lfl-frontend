@@ -60,7 +60,7 @@ data(){
 },
 methods:{
     getUsers(){
-        axios.get("https://lfl-app.herokuapp.com/api/userteams/")
+        axios.get("https://lfl-app.herokuapp.com/api/userteams/"    )
         .then(response=>{
             this.users = response.data
             console.log(response.data)

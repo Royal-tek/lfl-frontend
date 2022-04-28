@@ -11,7 +11,10 @@ export default createStore({
     token : null,
     players : null,
     error : "",
-    loading: false
+    loading: false,
+    showPaymentGateway: true,
+    paymentSuccessful: false,
+    user: {}
   },
   getters:{
     loggedIn : state =>{

@@ -40,15 +40,15 @@ export default {
 }
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'karla', sans-serif !important;
 }
 
-a, input, button {
+a, input, button, .search-form {
   font-family: inherit;
 }
 
 #app {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'karla', sans-serif !important;
   // filter: ;
 }
 

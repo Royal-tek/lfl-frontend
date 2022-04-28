@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-  <Payment/>
+  <Payment v-if="$store.state.showPaymentGateway"/>
     <!-- <PlayerSelectBar/> -->
     <div class="pickteam">
       
@@ -28,7 +28,7 @@
       >
         <div class="container">
           <div class="about-holder">
-            <h2 class="about-text" data-aos="fade-down" data-aos-delay="300">
+            <h2 class="about-text" data-aos="fade-down" data-aos-delay="300" style="font-family: 'Karla; font-size: 3rem'">
               Select Players
             </h2>
           </div>
@@ -109,7 +109,7 @@
             />
             <div v-if="buildField">
               <div class="player-select-holder">
-                <div style="justify-content: left" class="position-holder">
+                <div style="justify-content: left; font-family: 'Karla'" class="position-holder">
                   <b>Position:</b>
                   <select
                     v-model="selectedPosition"
@@ -129,9 +129,10 @@
                     </div> -->
                 </div>
                 <input
-                  type="search"
+                  type="tetx"
                   placeholder="Search names, nicknames and teams"
                   class="search-form form-control shadow-none"
+                  style="font-family: 'Karla'"
                   v-model="search"
                   @keyup="searchPlayers"
                 />
@@ -516,7 +517,7 @@ export default {
           console.log(error);
         });
     },
-    submitTeam() {
+  submitTeam() { 
       if(!this.enableSave.value) {
         this.enableSave.value = "You have selected more than 3 players from a team"
         setTimeout(() => {
@@ -533,7 +534,10 @@ export default {
       if(combinedArray.length < 11) {
         this.error = `Team Selection not complete yet, ${ 11 - combinedArray.length} Player(s) left.`
       } else {
-        axios
+        if(!this.$store.state.showPaymentGateway){
+          this.$store.state.showPaymentGateway = true;
+        } else {
+          axios
         .post(
           "https://lfl-app.herokuapp.com/api/createteam/",
           {
@@ -573,6 +577,7 @@ export default {
           })
           console.log(error);
         });
+        }
       }
     },
     getPlayers() {
@@ -860,7 +865,7 @@ export default {
       font-size: 13px;
       text-transform: capitalize;
       font-weight: bold;
-      font-family: "Roboto";
+      font-family: inherit;
     }
   }
   .player-point {
@@ -902,14 +907,14 @@ export default {
   height: 300px;
   overflow: auto;
   text-align: left;
-  font-family: "Roboto";
+  font-family: inherit;
 }
 .player-select-holder > div {
   border-bottom: 1px solid #f3f3f3;
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  font-family: "Roboto";
+  font-family: inherit;
   text-transform: capitalize;
   cursor: pointer;
   font-size: 14px;
@@ -949,7 +954,7 @@ export default {
   text-transform: capitalize;
   position: sticky;
   top: 0;
-  font-family: "Roboto";
+  font-family: inherit;
   left: 0;
   opacity: 1;
   z-index: 1;
@@ -1009,7 +1014,7 @@ input[type="submit"] {
   color: #fff;
   background-color: #35572aa6;
   padding: 5px;
-  font-family: "Roboto";
+  font-family: inherit;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   text-transform: uppercase;
