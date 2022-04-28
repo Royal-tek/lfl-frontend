@@ -76,7 +76,7 @@ export default {
             })
         }
     }
-    // computed: mapState(['token']),
+    
 }
 </script>
 

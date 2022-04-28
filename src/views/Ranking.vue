@@ -43,7 +43,7 @@
 </div>
 </template>
 <script>
-// @ is an alias to /src
+
 import Footer from "../components/Footer.vue";
 import Navbar from "../components/Navbar.vue";
 import axios from "axios";
@@ -56,7 +56,7 @@ components: {
 },
 data(){
     return{
-        users : []
+        users : [],
     }
 },
 methods:{

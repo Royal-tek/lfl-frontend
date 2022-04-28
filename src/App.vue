@@ -51,4 +51,12 @@ a, input, button {
   font-family: 'Roboto', sans-serif !important;
   // filter: ;
 }
+
+input {
+  font-family: inherit; 
+}
+
+.a-error {
+  color: red
+}
 </style>

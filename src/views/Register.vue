@@ -2,7 +2,6 @@
     <div class="register">
         <div class="container">
             <div class="register-holder">
-                
                 <div class="card card-register">
                     <div class="card-body">
                         <div class="logo-holder text-center my-2 py-2">
@@ -14,7 +13,14 @@
                             <img src="/assets/img/bg2.jpg" class="img-fluid" alt="">
                         </div>
                         <div class=" form-side col-md-5 col-sm-12">
-                            <form action="" class="form" @submit.prevent="submitForm">
+                            <form class="form" @submit.prevent="submitForm">
+                            <div class="a-error">
+                                <div v-show="error.password" v-for="(err, index) in error.password" :key="index">{{ err }}</div>
+                                <div v-show="error.username" v-for="(err, index) in error.username" :key="index">{{ err }}</div>
+                            </div>
+                            <div class="loader" style="text-align: center" v-if="!error && loading">
+                                <img src="https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif" width="80">
+                            </div>
                                 
                                 <input type="text" v-model="first_name" placeholder="Firstname" class="form-control input-form shadow-none">
                                 <input type="text" v-model="last_name" placeholder="Lastname" class="form-control shadow-none">
@@ -49,7 +55,8 @@ export default {
             email : "",
             password : "",
             password_confirm : "",
-            error : [],
+            error : "",
+            loading: false
         } 
     
     },
@@ -63,6 +70,7 @@ export default {
                 }
             },
             submitForm(){
+                this.loading = true
                 const Formdata = {
                     first_name : this.first_name,
                     last_name : this.last_name,
@@ -76,18 +84,22 @@ export default {
                 axios.post('https://lfl-app.herokuapp.com/account/register/', Formdata)
                 .then(response => {
                     toast({
-                message : 'Account created, please log in',
-                type : 'is-success',
-                dismissible : true,
-                pauseOnHover : true,
-                duration : 10000,
-                position : 'bottom-right'
-            })
-            this.$router.push('/login')
+                        message : 'Account created, please log in',
+                        type : 'is-success',
+                        dismissible : true,
+                        pauseOnHover : true,
+                        duration : 10000,
+                        position : 'bottom-right'
+                    })
+                    this.$router.push('/login')
                 })
                 .catch(error=>{
                     this.error = error.response.data
-                    alert(JSON.stringify(this.error))
+                    // alert(JSON.stringify(this.error))
+                    setTimeout(() => {
+                        this.error = ""
+                        this.loading = false
+                    }, 8000)
                 })
             }
     }
@@ -131,6 +143,7 @@ export default {
     .submit-button{
         display: block;
         margin: 0 auto;
+        width: 100%;
         padding: 10px 15px;
         transition: all ease-in-out .5s;
 
