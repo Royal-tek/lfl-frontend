@@ -189,12 +189,13 @@ export default {
 .player-register-holder{
     width: 100%;
     height: 100vh;
-    background: radial-gradient(rgba(4, 61, 39, 0.7),rgba(5, 161, 52, 0.7)), url(/assets/img/bg2.jpg);
+    background: radial-gradient(rgba(4, 61, 39, 0.7),rgba(5, 161, 93, 0.7)), url(/assets/img/bg2.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
 }
+
 .register-column{
     width: 100%;
     height: 100vh;
