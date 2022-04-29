@@ -42,11 +42,11 @@ export default {
       },
     },
     data(){
-        // const email = localStorage.getItem("email")
+        const email = localStorage.getItem("email")
         return {
           publicKey: "pk_live_f7ddf73d9978d268bdfcde7e999899a640c71063",
           testKey: "pk_test_e91ae16de3027ab64fdeea3ee576634b03519de8", //paystack public key
-          email: "patrickjoseph2121@gmail.com", // Customer email
+          email: email, // Customer email
           amount: 1000 * 100, // in kobo
           closedMessage: ''
         }
@@ -57,6 +57,7 @@ export default {
         .then(res => {
             if(res.data.status){
               this.$store.state.showPaymentGateway = false
+              this.$store.state.paymentSuccessfulMessage = "Payment of 1,000 was successful"
             }
         })
         .catch(err => {

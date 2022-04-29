@@ -143,6 +143,7 @@ export default {
     .submit-button{
         display: block;
         margin: 0 auto;
+        width: 100%;
         padding: 10px 15px;
         transition: all ease-in-out .5s;
 

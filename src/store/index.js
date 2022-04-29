@@ -12,8 +12,8 @@ export default createStore({
     players : null,
     error : "",
     loading: false,
-    showPaymentGateway: true,
-    paymentSuccessful: false,
+    showPaymentGateway: false,
+    paymentSuccessfulMessage: "",
     user: {}
   },
   getters:{

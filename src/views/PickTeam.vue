@@ -1,10 +1,14 @@
 <template>
   <div>
-    <Navbar />
+  <Navbar />
+  <Captain :selectedPlayers="selectedPlayers" v-if="showCaptain" v-on:close-btn="showCaptain = false"/>
   <Payment v-if="$store.state.showPaymentGateway"/>
+  <div class="payment-success flex" v-if="$store.state.paymentSuccessfulMessage">
+    <span>{{ $store.state.paymentSuccessfulMessage }}</span>
+    <span class="close-btn" @click="$store.state.paymentSuccessfulMessage = ''">&times;</span>
+  </div>
     <!-- <PlayerSelectBar/> -->
     <div class="pickteam">
-      
       <main v-for="status in selectTeam" :key="status">
         <main v-if="status.select_team == false">
           
@@ -402,21 +406,25 @@
 
 <script>
 import Payment from '../components/Payment.vue'
+import Captain from '../components/Captain.vue'
 import axios from "axios";
 import Navbar from "../components/Navbar.vue";
 import PlayerSelectBar from "../components/PlayerSelectBar.vue";
 import Footer from "../components/Footer.vue";
+
 export default {
   name: "PickTeam",
   components: {
     Navbar,
     Footer,
     PlayerSelectBar,
-    Payment
+    Payment,
+    Captain
   },
   data() {
     return {
       selectTeam : [],
+      showCaptain: true,
       user: "",
       players: [],
       teams: {
@@ -460,15 +468,15 @@ export default {
       selectedPosition: "all",
       unselectedplayers: [],
       selectedPlayers: {
-        gk: null,
+        gk: "Olabode",
         attackers: {
-          players: [],
+          players: ["Mikini", "Jack", "Jim"],
         },
         midfielders: {
-          players: [],
+          players: ["John", "Mark", "Gareth"],
         },
         defender: {
-          players: [],
+          players: ["Doe", "Pin", "Jake", "Solomon"],
         },
       },
       enableSave: {
@@ -809,7 +817,7 @@ export default {
 </script>
     <style scoped lang=scss>
 .field {
-  background-image: url(https://i.pinimg.com/originals/d7/b0/55/d7b05539aac8c5416c73ca046f977742.jpg);
+  background-image: url('https://i.pinimg.com/originals/d7/b0/55/d7b05539aac8c5416c73ca046f977742.jpg');
   height: 900px;
   width: 100%;
   background-position: initial;
@@ -1106,6 +1114,47 @@ input[type="submit"] {
         }
       }
     }
+  }
+}
+
+.payment-success {
+  margin-top: 63px;
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+  background-color: green;
+  z-index: 2;
+  justify-content: space-between;
+  display: flex;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+}
+
+.close-btn {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }
 </style>

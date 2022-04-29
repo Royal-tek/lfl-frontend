@@ -47,6 +47,12 @@ a, input, button, .search-form {
   font-family: inherit;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #app {
   font-family: 'karla', sans-serif !important;
   // filter: ;
