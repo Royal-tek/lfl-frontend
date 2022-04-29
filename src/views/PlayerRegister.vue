@@ -21,11 +21,7 @@
                                         <div class="col-md-8 text-center">
                                         <div class="input-group">
                                         <input type="text" class="form-control shadow-none user-input" placeholder="Firstname" v-model="registerInfo.firstname">
-                                        <!-- <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="fa fa-text p-1"></span>
-                                            </div>
-                                        </div> -->
+
                                         </div>
 
                                         <div class="input-group">
@@ -35,9 +31,7 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control shadow-none" placeholder="Username" v-model="registerInfo.username">
                                         </div>
-                                        <!-- <div class="help-text">
-                                        <small>Username must be uniqie!</small>
-                                        </div> -->
+
 
                                         <div class="input-group">
                                             <input type="number" class="form-control shadow-none" placeholder="Registered Kit Number" v-model="registerInfo.number">
@@ -85,18 +79,7 @@
                                     </div>
                                 
                                     
-                                    
-                                    
-
-                                    <!-- {{registerInfo.firstname}}
-                                    {{registerInfo.lastname}}
-                                    {{registerInfo.username}}
-                                    {{registerInfo.coach}}
-                                    {{registerInfo.position}}
-                                    {{registerInfo.number}}
-                                    {{registerInfo.team}}
-                                    {{registerInfo.image}} -->
-
+          
                                     
                                 
                                 </form>
