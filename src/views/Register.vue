@@ -110,7 +110,7 @@ export default {
 
 <style scoped lang=scss>
 .register{
-    background: linear-gradient(rgba(4, 61, 39, 0.7),rgba(5, 161, 52, 0.7)), url(/assets/img/lmuid.jpeg);
+    background: linear-gradient(rgba(4, 61, 39, 0.7),rgba(5, 161, 93, 0.7)), url('https://africalive.net/wp-content/uploads/2020/08/landmark-1200x600.jpg');
     height: 100vh;
     width: 100%;
     background-attachment: fixed;

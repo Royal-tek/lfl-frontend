@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-
+  <Payment v-if="$store.state.showPaymentGateway"/>
     <!-- <PlayerSelectBar/> -->
     <div class="pickteam">
       
@@ -28,7 +28,7 @@
       >
         <div class="container">
           <div class="about-holder">
-            <h2 class="about-text" data-aos="fade-down" data-aos-delay="300">
+            <h2 class="about-text" data-aos="fade-down" data-aos-delay="300" style="font-family: 'Karla; font-size: 3rem'">
               Select Players
             </h2>
           </div>
@@ -109,7 +109,7 @@
             />
             <div v-if="buildField">
               <div class="player-select-holder">
-                <div style="justify-content: left" class="position-holder">
+                <div style="justify-content: left; font-family: 'Karla'" class="position-holder">
                   <b>Position:</b>
                   <select
                     v-model="selectedPosition"
@@ -129,9 +129,10 @@
                     </div> -->
                 </div>
                 <input
-                  type="search"
+                  type="tetx"
                   placeholder="Search names, nicknames and teams"
                   class="search-form form-control shadow-none"
+                  style="font-family: 'Karla'"
                   v-model="search"
                   @keyup="searchPlayers"
                 />
@@ -383,9 +384,9 @@
                             : "none"
                         }}
                       </div>
-                      <div class="player-point">
+                      <!-- <div class="player-point">
                                         <h6> 0</h6>
-                                        </div>
+                                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -398,8 +399,9 @@
     <Footer />
     </div>
 </template>
-    <script>
-// import { toast } from "bulma-toast";
+
+<script>
+import Payment from '../components/Payment.vue'
 import axios from "axios";
 import Navbar from "../components/Navbar.vue";
 import PlayerSelectBar from "../components/PlayerSelectBar.vue";
@@ -410,6 +412,7 @@ export default {
     Navbar,
     Footer,
     PlayerSelectBar,
+    Payment
   },
   data() {
     return {
@@ -485,15 +488,14 @@ export default {
     }, 5000);
   },
   methods: {
-    // getSelectTeamStatus(){
-    //   axios
-    //   .get("https://lfl-app.herokuapp.com/api/displayplayers/")
-    //   .then(response =>{
-    //     this.selectTeam = response.data
-    //     console.log(response.data)
-
-    //   })
-    // },
+    getSelectTeamStatus(){
+      axios
+      .get("https://lfl-app.herokuapp.com/api/displayplayers/")
+      .then(response =>{
+        this.selectTeam = response.data
+        console.log(response.data)
+      })
+    },
     getUser() {
       axios
         .get("https://lfl-app.herokuapp.com/api/viewuser/", {
@@ -515,14 +517,13 @@ export default {
           console.log(error);
         });
     },
-    submitTeam() {
+  submitTeam() { 
       if(!this.enableSave.value) {
         this.enableSave.value = "You have selected more than 3 players from a team"
         setTimeout(() => {
           this.enableSave.error = ""
         }, 4000)
       }
-
       let combinedArray = [
         ...this.selectedPlayers.defender.players,
         ...this.selectedPlayers.midfielders.players,
@@ -533,7 +534,10 @@ export default {
       if(combinedArray.length < 11) {
         this.error = `Team Selection not complete yet, ${ 11 - combinedArray.length} Player(s) left.`
       } else {
-        axios
+        if(!this.$store.state.showPaymentGateway){
+          this.$store.state.showPaymentGateway = true;
+        } else {
+          axios
         .post(
           "https://lfl-app.herokuapp.com/api/createteam/",
           {
@@ -573,6 +577,7 @@ export default {
           })
           console.log(error);
         });
+        }
       }
     },
     getPlayers() {
@@ -665,7 +670,6 @@ export default {
     selectPlayer(player) {
       // const totalPlayers = this.selectedPlayers.defender.players.concat(this.selectedPlayers.midfielders.players, this.selectedPlayers.attackers.players)
       // console.log(totalPlayers)
-
       if (
         this.selectedPlayers.defender.players.includes(player) ||
         this.selectedPlayers.midfielders.players.includes(player) ||
@@ -678,12 +682,10 @@ export default {
         }, 3000);
         return;
       }
-
       if (player.position === "gk") {
         this.formations.gk = { name: player.username, team: player.team };
         this.selectedPlayers.gk = player;
       }
-
       if (player.position === "def") {
         if (
           this.formations.defender.players.length ===
@@ -701,7 +703,6 @@ export default {
         });
         this.selectedPlayers.defender.players.push(player);
       }
-
       if (player.position === "mid") {
         if (
           this.formations.midfielders.players.length ===
@@ -716,7 +717,6 @@ export default {
         });
         this.selectedPlayers.midfielders.players.push(player);
       }
-
       if (player.position === "fwd") {
         if (
           this.formations.attackers.players.length ===
@@ -731,7 +731,6 @@ export default {
         });
         this.selectedPlayers.attackers.players.push(player);
       }
-
       let combinedArray = [
         ...this.selectedPlayers.defender.players,
         ...this.selectedPlayers.midfielders.players,
@@ -739,7 +738,6 @@ export default {
         this.selectedPlayers.gk
       ];
       this.teamPlayers = combinedArray
-
       const countPlayers = (value, arr) =>
         arr.filter((x) => x.team === value).length;
       if (countPlayers(player.team, combinedArray) > 3) {
@@ -761,9 +759,7 @@ export default {
         ...this.selectedPlayers.attackers.players,
         this.selectedPlayers.gk
       ];
-
       this.teamPlayers = combinedArray
-
       const countPlayers = (value, arr) =>
         arr.filter((x) => x.team === value).length;
       if (countPlayers(player.team, combinedArray) > 4) {
@@ -777,23 +773,19 @@ export default {
         this.enableSave.error = ""
       }
       console.log(countPlayers(player.team, combinedArray));
-
       
       if (position === "gk") {
         this.formations.gk = "";
         this.selectedPlayers.gk = "";
       }
-
       if (position === "def") {
         this.formations.defender.players.splice(index, 1);
         this.selectedPlayers.defender.players.splice(index, 1);
       }
-
       if (position === "mid") {
         this.formations.midfielders.players.splice(index, 1);
         this.selectedPlayers.midfielders.players.splice(index, 1);
       }
-
       if (position === "fwd") {
         this.formations.attackers.players.splice(index, 1);
         this.selectedPlayers.attackers.players.splice(index, 1);
@@ -856,7 +848,6 @@ export default {
   flex-direction: column;
   /* background-color: #fff; */
   color: black;
-
   .player-img {
     cursor: pointer;
   }
@@ -874,7 +865,7 @@ export default {
       font-size: 13px;
       text-transform: capitalize;
       font-weight: bold;
-      font-family: "Roboto";
+      font-family: inherit;
     }
   }
   .player-point {
@@ -883,7 +874,6 @@ export default {
     color: white;
     text-align: center;
     border-radius: 50px;
-
     h6 {
       font-size: 12px;
     }
@@ -912,41 +902,35 @@ export default {
     }
   }
 }
-
 .player-select-holder {
   box-shadow: 0 0 6px 0 #ccc;
   height: 300px;
   overflow: auto;
   text-align: left;
-  font-family: "Roboto";
+  font-family: inherit;
 }
-
 .player-select-holder > div {
   border-bottom: 1px solid #f3f3f3;
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  font-family: "Roboto";
+  font-family: inherit;
   text-transform: capitalize;
   cursor: pointer;
   font-size: 14px;
 }
-
 #player-pos {
   color: #bb007d;
 }
-
 .player-select-holder .fa-plus {
   padding: 5px;
   cursor: pointer;
   border-radius: 100%;
 }
-
 .player-select-holder .fa-plus:hover {
   background-color: #569424;
   color: #fff;
 }
-
 .remove-player {
   position: absolute;
   right: -5px;
@@ -961,18 +945,16 @@ export default {
   z-index: 1;
   border-radius: 3px;
 }
-
 .player-img {
   position: relative;
 }
-
 .position-holder, .cap-title {
   background-color: #569424;
   color: #fff;
   text-transform: capitalize;
   position: sticky;
   top: 0;
-  font-family: "Roboto";
+  font-family: inherit;
   left: 0;
   opacity: 1;
   z-index: 1;
@@ -980,40 +962,32 @@ export default {
   font-weight: bold;
   text-transform: uppercase;
 }
-
 .position-holder b {
   text-transform: uppercase;
   font-family: inherit;
   margin-right: 10px;
 }
-
 .unselected {
   opacity: 0.5;
 }
-
 .row {
   padding-bottom: 80px;
 }
-
 .select-form input {
   margin-right: 5px;
 }
-
 input[type="submit"] {
   color: #fff;
   font-weight: bold;
 }
-
 .search-form {
   border: none;
   border-bottom: 1px solid #ccc;
   border-radius: 0;
 }
-
 .error-message {
   cursor: pointer;
 }
-
 .select-position {
   background: transparent;
   border: none;
@@ -1022,44 +996,37 @@ input[type="submit"] {
   outline: none;
   padding: 0 30px 0 0;
 }
-
 .select-position option {
   color: #000;
   font-size: 15x;
   cursor: pointer;
 }
-
 .picked {
   opacity: 0.5;
   pointer-events: none;
 }
-
 .unpicked {
   opacity: 1;
 }
-
 .player-team {
   margin: -4px;
   font-size: 12px;
   color: #fff;
   background-color: #35572aa6;
   padding: 5px;
-  font-family: "Roboto";
+  font-family: inherit;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   text-transform: uppercase;
   /* width: 100%; */
 }
-
 .player-row {
   width: 85%;
   margin: 0 auto;
 }
-
 .pos img {
   width: 40px;
 }
-
 .picked-players {
   text-align: left;
   box-shadow: 0 0 6px 2px #ccc;
@@ -1067,7 +1034,6 @@ input[type="submit"] {
   height: 300px;
   overflow: auto;
 }
-
 .team-player {
   display: flex;
   justify-content: space-between;
@@ -1076,29 +1042,23 @@ input[type="submit"] {
   border-bottom: 1px solid #f3f3f3;
   text-transform: capitalize;
 }
-
 .team-player:hover {
   background-color: #f3f3f3;
 }
-
 /* .captain {
   background-color: #c5f39f;
   font-weight: bold
 } */
-
 @media (max-width: 400px) {
   .player-row {
     width: 100%;
   }
-
   .player-row img {
     width: 30px;
   }
-
   .pos {
     width: 30px;
   }
-
   .error-message {
     width: 300px;
   }
@@ -1113,7 +1073,6 @@ input[type="submit"] {
   align-items: center;
   justify-content: center;
   z-index: 100;
-
   .selectTeam{
     padding: 10px;
     width: 40%;
@@ -1126,7 +1085,6 @@ input[type="submit"] {
     align-items: center;
     flex-direction: column;
     justify-content: center;
-
     .selectteamh1{
       color: white;
       text-align: center;
@@ -1137,13 +1095,11 @@ input[type="submit"] {
       position: absolute;
       bottom: 0;
       
-
       p{
         width:100%;
         text-align: center;
         color: white;
         font-size: 20px;
-
         span{
           font-size: 30px;
           font-weight: bold;

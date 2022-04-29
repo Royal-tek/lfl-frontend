@@ -69,6 +69,7 @@ export default {
             axios.get("https://lfl-app.herokuapp.com/api/viewuser/", {headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
             .then(response=>{
                 this.user = response.data
+                localStorage.setItem("email", response.data[0].email)
                 console.log(response.data)
             })
             .catch(error=>{
@@ -97,4 +98,9 @@ export default {
     top: 0;
     left: 0;
 } */
+
+a {
+    font-weight: bold;
+    font-family: inherit;
+}
 </style>

@@ -175,7 +175,7 @@ export default {
 
             axios.post("https://lfl-app.herokuapp.com/api/createplayers/", fd)
             .then(response=>{
-                response.data
+                console.log(response.data)
             })
             .catch(error=>{
                 console.log(error.response.data)

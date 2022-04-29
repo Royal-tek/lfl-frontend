@@ -43,11 +43,10 @@
 </div>
 </template>
 <script>
-
+// @ is an alias to /src
 import Footer from "../components/Footer.vue";
 import Navbar from "../components/Navbar.vue";
 import axios from "axios";
-
 export default {
 name: "Ranking",
 components: {
@@ -56,12 +55,12 @@ components: {
 },
 data(){
     return{
-        users : [],
+        users : []
     }
 },
 methods:{
     getUsers(){
-        axios.get("https://lfl-app.herokuapp.com/api/userteams/")
+        axios.get("https://lfl-app.herokuapp.com/api/userteams/"    )
         .then(response=>{
             this.users = response.data
             console.log(response.data)
@@ -74,6 +73,5 @@ methods:{
 mounted(){
     this.getUsers()
 },
-
 };
 </script>
