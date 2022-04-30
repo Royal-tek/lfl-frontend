@@ -1,11 +1,16 @@
 <template>
     <div class="player-register-holder">
         <div class="container">
+            
             <div class="row">
                 
                 <div class="col register-column d-flex justify-content-center align-items-center">
                     
                     <div class="card register-card">
+                        <div class="error alert alert-danger" v-if="errors">
+                            <div v-for="error in errors" :key="error.id">{{error[0]}}</div>
+                        </div>
+                        <div v-if="successMsg" class="alert alert-success">{{ successMsg }}</div>
                         
                     <h3 class="text-center text-uppercase register-welcome-text my-2">Become a player now</h3>
                         <div class="row">
@@ -125,6 +130,8 @@ export default {
                 number: "",
                 team : ""
             },
+            errors: "",
+            successMsg: ""
         }
     },
     mounted(){
@@ -133,11 +140,10 @@ export default {
     methods:{
         getCoachInfo(){
             axios.get("https://lfl-app.herokuapp.com/api/listallcoaches/")
-            .then(response=>{
-                console.log(response.data)
+            .then(response=>{    
                 this.coachInfo = response.data
-                console.log(this.coachInfo)
             })
+
             .catch(error=>{
                 console.log(error)
             })
@@ -158,9 +164,20 @@ export default {
 
             axios.post("https://lfl-app.herokuapp.com/api/createplayers/", fd)
             .then(response=>{
+                this.successMsg = "Player Registered Successfully"
+                setTimeout(() => {this.successMsg = ""}, 4000)
+                this.registerInfo.firstname = ''
+                this.registerInfo.lastname = ''
+                this.registerInfo.username = ''
+                this.registerInfo.position = ''
+                this.registerInfo.team = ''
+                this.registerInfo.coach = ''
+                this.registerInfo.number = ''
                 console.log(response.data)
             })
             .catch(error=>{
+                this.errors = error.response.data
+                setTimeout(() => {this.errors = ""}, 4000) 
                 console.log(error.response.data)
             })
         }
