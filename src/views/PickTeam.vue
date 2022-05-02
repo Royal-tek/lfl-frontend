@@ -1,7 +1,7 @@
 <template>
   <div>
   <Navbar />
-  <Captain :selectedPlayers="selectedPlayers" v-if="showCaptain" v-on:close-btn="showCaptain = false"/>
+  <Captain :selectedPlayers="selectedPlayers" v-if="showCaptain" v-on:close-btn="showCaptain = false" v-on:save-team="paymentStep"/>
   <Payment v-if="$store.state.showPaymentGateway"/>
   <div class="payment-success flex" v-if="$store.state.paymentSuccessfulMessage">
     <span>{{ $store.state.paymentSuccessfulMessage }}</span>
@@ -45,10 +45,9 @@
             v-if="error"
           >
             <p class="text-center text-uppercase">{{ error }}</p>
-            <i
+            <span @click="error = ''"><i
               class="fas fa-window-close close-message"
-              @click="closeError"
-            ></i>
+            ></i></span>
           </div>
           <div
             class="error-message alert alert-danger col-12 text-center"
@@ -113,7 +112,7 @@
             />
             <div v-if="buildField">
               <div class="player-select-holder">
-                <div style="justify-content: left; font-family: 'Karla'" class="position-holder">
+                <div style="justify-content: left; font-family: 'Karla'; position: relative;" class="position-holder">
                   <b>Position:</b>
                   <select
                     v-model="selectedPosition"
@@ -133,10 +132,10 @@
                     </div> -->
                 </div>
                 <input
-                  type="tetx"
+                  type="text"
                   placeholder="Search names, nicknames and teams"
                   class="search-form form-control shadow-none"
-                  style="font-family: 'Karla'"
+                  style="font-family: 'Karla'; position: sticky; top: 0; left: 0;"
                   v-model="search"
                   @keyup="searchPlayers"
                 />
@@ -163,22 +162,12 @@
                   </span>
                 </div>
               </div>
-               <div
+               <!-- <div
               v-if="buildField == true"
               v-show="teamPlayers.length > 0"
               class="picked-players"
             >
-            <!-- {{ captain.id }}  -->
-            <!-- <div class="cap-title">Choose Captain</div>
-            <div class="team-player" v-for="(player, index) in teamPlayers" :key="index" @click="captain = player"
-            :class="player === captain ? 'captain' : 'not-cap'"  
-            >
-              <span class="player-name">{{ player.username.toLowerCase() }}</span>
-              <span class="captain-icon">
-                <i class="fa fa-copyright"></i>
-              </span>
             </div> -->
-            </div>
             </div>
             <button
               v-if="buildField == true"
@@ -190,13 +179,6 @@
             >
               <b>SAVE TEAM</b>
             </button>
-            <!-- {{ unselectedplayers }} -->
-            <!-- <div v-for="(coach, index) in unselectedplayers" :key="index">
-                        <div v-for="(player, index) in coach.coach.coach" :key="index">
-                            {{ player }}
-                        </div>
-                    </div> -->
-            <!-- {{  formations }} -->
           </div>
 
           <div class="col-md-8">
@@ -424,7 +406,7 @@ export default {
   data() {
     return {
       selectTeam : [],
-      showCaptain: true,
+      showCaptain: false,
       user: "",
       players: [],
       teams: {
@@ -470,6 +452,7 @@ export default {
       selectedPlayers: {
         gk: "",
         attackers: {
+<<<<<<< HEAD
           players: [],
         },
         midfielders: {
@@ -477,6 +460,15 @@ export default {
         },
         defender: {
           players: [],
+=======
+          players: []
+        },
+        midfielders: {
+          players: []
+        },
+        defender: {
+          players: []
+>>>>>>> e167ece09de556ef57197d8a7243a3dff7a10bce
         },
       },
       enableSave: {
@@ -525,7 +517,7 @@ export default {
           console.log(error);
         });
     },
-  submitTeam() { 
+  submitTeam(captain) { 
       if(!this.enableSave.value) {
         this.enableSave.value = "You have selected more than 3 players from a team"
         setTimeout(() => {
@@ -542,7 +534,12 @@ export default {
       if(combinedArray.length < 11) {
         this.error = `Team Selection not complete yet, ${ 11 - combinedArray.length} Player(s) left.`
       } else {
-        if(!this.$store.state.showPaymentGateway){
+        this.showCaptain = true
+      }
+    },
+    paymentStep(captain){
+      console.log(captain.id)
+      if(!this.$store.state.showPaymentGateway){
           this.$store.state.showPaymentGateway = true;
         } else {
           axios
@@ -555,8 +552,9 @@ export default {
             midfielders: this.selectedPlayers.midfielders.players.map(
               (p) => p.id
             ),
-            goalkeeper: [this.selectedPlayers.gk.id]
-            // captain: [this.captain.id]
+            goalkeeper: [this.selectedPlayers.gk.id],
+            captain: [captain.id],
+            week: this.$store.state.matchweek
           },
           {
             headers: {
@@ -572,9 +570,8 @@ export default {
                 footer:'<i>You will be redirected to your team page now so you can manage your team</i>'
           })
           .then((result) => {
-            if(result.isConfirmed) this.$router.push('/myteam')
-            
-          })
+              if(result.isConfirmed) this.$router.push('/myteam')
+            })
           })
         .catch((error) => {
           this.$swal({
@@ -586,7 +583,6 @@ export default {
           console.log(error);
         });
         }
-      }
     },
     getPlayers() {
       axios
@@ -837,7 +833,7 @@ export default {
   position: fixed;
   width: 30%;
   margin: 0 auto;
-  z-index: 100 !important;
+  z-index: 1000 !important;
   bottom: 10px;
   left: 10px;
   .close-message {

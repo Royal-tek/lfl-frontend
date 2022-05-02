@@ -13,8 +13,11 @@
         <div class="display" >
             <div class="field">
                 <div class="container">
-                    <div class="row">
-                        <div class="col text-center player" v-for="gk in team.gk" :key="gk.id">
+                    <div class="row gk-row text-center">
+                        <div class="col text-center gk-player" v-for="gk in team.gk" :key="gk.id">
+                            <div class="captain" v-if="team.captain.id == gk.id"> 
+                                <i class="fa fa-copyright"></i>
+                            </div>
                             <div class="gk-info" @click="displayInfo(gk)">
                                 <i class="fa fa-info"></i>
                             </div>
@@ -28,6 +31,9 @@
                     
                     <div class="row">
                         <div class="col text-center player"  v-for="(defender, index) in team.defenders.players" :key="index">
+                            <div class="captain" v-if="team.captain.id === defender.id"> 
+                                <i class="fa fa-copyright"></i>
+                            </div>
                             <div class="info" @click="displayInfo(defender)">
                                 <i class="fa fa-info"></i>
                             </div>
@@ -41,6 +47,9 @@
 
                     <div class="row">
                         <div class="col text-center player"  v-for="(midfielder, index) in team.midfielders.players" :key="index">
+                            <div class="captain" v-if="team.captain.id === midfielder.id"> 
+                                <i class="fa fa-copyright"></i>
+                            </div>
                             <div class="info" @click="displayInfo(midfielder)">
                                 <i class="fa fa-info"></i>
                             </div>
@@ -54,6 +63,9 @@
 
                     <div class="row">
                         <div class="col text-center player"  v-for="(attacker, index) in team.attackers.players" :key="index">
+                            <div class="captain" v-if="team.captain.id == attacker.id"> 
+                                <i class="fa fa-copyright"></i>
+                            </div>
                             <div class="info" @click="displayInfo(attacker)">
                                 <i class="fa fa-info"></i>
                             </div>
@@ -70,19 +82,19 @@
             <div class="details-display">
                 <div>
                     <div class="label">User</div>
-                    <div class="value">{{ user.username }}</div>
+                    <div class="value text-capitalize">{{ user }}</div>
                 </div>
                 <div>
-                    <div class="label">Total Points</div>
-                    <div class="value">0</div>
+                    <div class="label">Gameweek</div>
+                    <div class="value">{{ week }}</div>
                 </div>
                 <div>
-                    <div class="label">Total Points</div>
-                    <div class="value">0</div>
+                    <div class="label">Gameweek Points</div>
+                    <div class="value">{{ !weekPoints ? '_' : weekPoints }}</div>
                 </div>
                 <div>
-                    <div class="label">Total Points</div>
-                    <div class="value">0</div>
+                    <div class="label">Overall Points</div>
+                    <div class="value">{{ !overallPoints ? '0' : overallPoints }}</div>
                 </div>
             </div>
         </div>
@@ -150,6 +162,9 @@ export default {
     data(){
         return{
             user: {},
+            week: '-',
+            weekPoints: "_",
+            overallPoints: 0,
             team: {
                 gk: [],
                 defenders: {
@@ -161,6 +176,7 @@ export default {
                 attackers: {
                     players: []
                 },
+                captain: {}
             },
             showModal: false,
             modalContent: {
@@ -172,7 +188,6 @@ export default {
         }
     },
     mounted(){
-        
         this.getPlayers()
     },
     methods:{
@@ -184,13 +199,19 @@ export default {
             this.showModal = true
         },
         getPlayers(){
-            axios.get("https://lfl-app.herokuapp.com/api/singleuserteam/", {headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
+            axios.get("https://lfl-app.herokuapp.com/api/singleuserteam/", { headers :{ "Authorization": "Token "+localStorage.getItem('auth_token')}})
             .then(response=>{
                 this.team.defenders.players = response.data[response.data.length - 1].defenders
                 this.team.midfielders.players = response.data[response.data.length - 1].midfielders
                 this.team.attackers.players = response.data[response.data.length - 1].attackers
                 this.team.gk = response.data[response.data.length - 1].goalkeeper
                 this.user = response.data[response.data.length - 1].user
+                this.week = response.data[response.data.length - 1].week
+                this.weekPoints = response.data[response.data.length - 1].get_points
+                this.team.captain = response.data[response.data.length -1].captain[0]
+                response.data.forEach((week) => {
+                    this.overallPoints += week.get_points
+                })
                 console.log(response.data)
             })
             .catch(error=>{
@@ -272,6 +293,14 @@ img {
 }
 
 .player {
+    max-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.gk-player {
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -281,13 +310,21 @@ img {
 
 .info {
     position: absolute;
-    right: 0;
+    right: 10px;
     padding: 5px 10px;
     font-size: 13px;
     color: #000;
     background-color: #fff;
     border-radius: 2px;
     cursor: pointer;
+}
+
+.captain {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    font-size: 20px;
+    color: #000;
 }
 
 .gk-info {
@@ -322,7 +359,7 @@ img {
     }
 }
 
-.player-info{
+.player-info {
     background-color: #0000009c;
     padding: 5px;
     padding-bottom: -10px;
