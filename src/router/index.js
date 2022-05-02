@@ -127,7 +127,7 @@ const routes = [
     }
   },
   {
-    path: '/ranking',
+    path: '/leaderboards',
     name: 'Ranking',
     component: Ranking,
     meta:{

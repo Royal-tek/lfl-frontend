@@ -9,7 +9,7 @@
         <ul class="navbar-nav ms-auto">
             <li><router-link to="/" :class="{active : $route.name == 'Home'}" >Home</router-link></li>
             <li><router-link to="/about" :class="{active : $route.name == 'About'}" >About</router-link></li>
-            <li><router-link to="/ranking" :class="{active : $route.name == 'Ranking'}" >Ranking</router-link></li>
+            <li><router-link to="/leaderboards" :class="{active : $route.name == 'leaderboards'}" >Leaderboards</router-link></li>
             <li><router-link to="/contact-us" :class="{active : $route.name == 'Contact'}" >Contact Us</router-link></li>
             <li><router-link to="/rules" :class="{active : $route.name == 'Rules'}" >Rules</router-link></li>
             <!-- <li><router-link to="/news" :class="{active : $route.name == 'News'}">News</router-link></li> -->

@@ -468,15 +468,15 @@ export default {
       selectedPosition: "all",
       unselectedplayers: [],
       selectedPlayers: {
-        gk: "Olabode",
+        gk: "",
         attackers: {
-          players: ["Mikini", "Jack", "Jim"],
+          players: [],
         },
         midfielders: {
-          players: ["John", "Mark", "Gareth"],
+          players: [],
         },
         defender: {
-          players: ["Doe", "Pin", "Jake", "Solomon"],
+          players: [],
         },
       },
       enableSave: {

@@ -1,7 +1,7 @@
 <template>
 <div>
     <Navbar/>
-    <div class="rules py-1">
+    <div class="rules ">
             <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
@@ -13,14 +13,14 @@
 
     <section class="rules">
         <div class="container">
-        <div class="row">
+            <h2 class="text-uppercase text-muted text-center">These are the standards by which player points will be graded.</h2>
+        <!-- <div class="row">
             <div class="col-md-6">
-                <!-- <img src="../assets/images/rules.png" class="img-fluid" alt=""> -->
             </div>
             <div class="col-md-6 mt-lg-5 pt-lg-5 mt-3">
                 <h5 class="text-muted"> </h5>
             </div>
-        </div>
+        </div> -->
         </div>
     </section>
 
@@ -31,7 +31,7 @@
         <div class="container">
 
 <!-- THIS IS THE SECTION FOR GOALKEEPER POINT GRADING SYSTEM -->
-        <div class="goalkeeper my-3 py-3">
+        <div class="goalkeeper my-2 py-2">
         <h1>Goalkeepers</h1>
         <P>This is the grading system for goalkeepers</P>
         <table class="table table-hover table-bordered table-striped">

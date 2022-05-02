@@ -90,11 +90,11 @@
 
             </p>
             <p>
-            <router-link to="/latestnews" class="text-dark">Latest News</router-link>
+            <router-link to="/news/latestnews" class="text-dark">Latest News</router-link>
             <!-- <a href="#!" class="text-dark">Latest News</a> -->
             </p>
             <p>
-            <router-link to="/ranking" class="text-dark">Leader Boards</router-link>
+            <router-link to="/leaderboards" class="text-dark">Leader Boards</router-link>
             <!-- <a href="#!" class="text-dark">Leader Boards</a> -->
             </p>
             <p>
