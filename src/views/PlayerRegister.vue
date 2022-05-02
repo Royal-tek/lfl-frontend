@@ -52,11 +52,7 @@
                                         <div class="form-group">
                                             <select class="select" v-model="registerInfo.coach">
                                                 <option value="">Choose Your Coach</option>
-<<<<<<< HEAD
                                                 <option class="text-uppercase" :value="coach.id"  v-for="coach in coachInfo" :key="coach.id">{{coach.coach_team_user}} of {{coach.team}}</option>
-=======
-                                                <option class="text-uppercase" :value="coach.coach_team_user.id"  v-for="coach in coachInfo" :key="coach.id">{{coach.code_team_user.username}} of {{coach.team}}</option>
->>>>>>> e167ece09de556ef57197d8a7243a3dff7a10bce
                                                 
                                             </select>
                                         </div>

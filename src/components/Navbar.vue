@@ -10,7 +10,7 @@
             <li><router-link to="/" :class="{active : $route.name == 'Home'}" >Home</router-link></li>
             <li><router-link to="/about" :class="{active : $route.name == 'About'}" >About</router-link></li>
             <li><router-link to="/leaderboards" :class="{active : $route.name == 'leaderboards'}" >Leaderboards</router-link></li>
-            <li><router-link to="/contact-us" :class="{active : $route.name == 'Contact'}" >Contact Us</router-link></li>
+            <li><router-link to="/review" :class="{active : $route.name == 'Review'}" >Reviews</router-link></li>
             <li><router-link to="/rules" :class="{active : $route.name == 'Rules'}" >Rules</router-link></li>
             <!-- <li><router-link to="/news" :class="{active : $route.name == 'News'}">News</router-link></li> -->
 
@@ -70,6 +70,7 @@ export default {
             .then(response=>{
                 this.user = response.data
                 localStorage.setItem("email", response.data[0].email)
+                localStorage.setItem("username", response.data[0].username)
                 console.log(response.data)
             })
             .catch(error=>{

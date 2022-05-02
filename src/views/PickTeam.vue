@@ -452,15 +452,6 @@ export default {
       selectedPlayers: {
         gk: "",
         attackers: {
-<<<<<<< HEAD
-          players: [],
-        },
-        midfielders: {
-          players: [],
-        },
-        defender: {
-          players: [],
-=======
           players: []
         },
         midfielders: {
@@ -468,7 +459,6 @@ export default {
         },
         defender: {
           players: []
->>>>>>> e167ece09de556ef57197d8a7243a3dff7a10bce
         },
       },
       enableSave: {

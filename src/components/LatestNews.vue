@@ -138,7 +138,7 @@ export default {
     },
     methods:{
         loadNews(){
-            axios.get("http://lfl-app.herokuapp.com/api/news/")
+            axios.get("https://lfl-app.herokuapp.com/api/news/")
             .then(response=>{
                 this.news = response.data
                 console.log(this.news)

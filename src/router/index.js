@@ -79,8 +79,8 @@ const routes = [
     ]
   },
   {
-    path: '/contact-us',
-    name: 'Contact',
+    path: '/review',
+    name: 'Review',
     component: Contact,
     meta:{
       enterClass:"animate__animated animate__fadeInLeft",

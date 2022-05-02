@@ -15,18 +15,32 @@
       <div class="container">
 
         <div class="row content">
-          <div class="col-lg-6" data-aos="fade-left"  data-aos-delay="300">
-            <h2>The first of its kind</h2>
-            <h3>The landmark university fantasy league ( LFL ) aims to spice up the sport section of the school.</h3>
+          <div class="col-lg-4" data-aos="fade-left"  data-aos-delay="300">
+            <h2>The first of it 's kind</h2>
+            <h4>The landmark university fantasy league ( LFL ) gives you the chance to show how good of a manager you are.</h4><br>
+            <h4>Test your managing skills amongst fellow students and friends by selecting players that you are familiar with and evaluating their performance weekly.</h4>
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-right"  data-aos-delay="300">
-            <p>
-              Being the first ever of it's kind , we are prone to make alot of errors and we do not mind being corrected. If you have any suggestions you can send us an email, message or even give us call, we would be moe than happy to listen and take corrections.
-            </p>
+          <div class="col-lg-8 pt-4 pt-lg-0" data-aos="fade-right"  data-aos-delay="300">
+            <h5 class="text-dark text-uppercase"><b>
+              Create and manage your fantasy landmark team and stand a chance to win amazing prices
+            </b></h5>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+              <!-- <li><i class="ri-check-double-line">1'st place</i> 20,000</li> -->
+              <div class="price my-3 py-3">
+                <div class="position display-4"><p class="text-uppercase"><b>1st place</b></p></div>
+                <div class="award"><h3><span># </span><b>25,000</b></h3></div>
+              </div>
+
+              <div class="price my-3 py-3">
+                <div class="position display-4"><p class="text-uppercase"><b>2nd place</b></p></div>
+                <div class="award"><h3><span># </span><b>15,000</b></h3></div>
+              </div>
+
+              <div class="price my-3 py-3">
+                <div class="position display-4"><p class="text-uppercase"><b>3rd place</b></p></div>
+                <div class="award"><h3><span># </span><b>10,000</b></h3></div>
+              </div>
+              
             </ul>
 
           </div>
@@ -40,59 +54,57 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-up"  data-aos-delay="300">
-          <h2>Offering you</h2>
-          <p>What we have to offer</p>
+          <h2><b>LFL</b></h2>
+          <p>Other amazing prizes</p>
         </div>
 
         <div class="row skills-content">
 
-          <div class="col-lg-6" data-aos="fade-left"  data-aos-delay="300">
+          <div class="col-lg-6 " data-aos="fade-left"  data-aos-delay="300">
 
-            <div class="progress">
-              <span class="skill">Transparency <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="diffprizes mb-4 pb-4">
+              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <div class="text">
+              <h3><b>Manager of the week</b></h3>
+              <p>This award goes to the manager with the highest points for a particluar weekday</p>
               </div>
+
             </div>
 
-            <div class="progress">
-              <span class="skill">Fun <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="diffprizes">
+              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <div class="text">
+              <h3><b> Manager of the month</b></h3>
+              <p>This award goes to the manager with the highest points for a month</p>
               </div>
+
             </div>
 
-            <div class="progress">
-              <span class="skill">Thrill <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
+
 
           </div>
 
-          <div class="col-lg-6" data-aos="fade-right"  data-aos-delay="300">
+          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-right"  data-aos-delay="300">
 
-            <div class="progress">
-              <span class="skill">Drama <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="diffprizes mb-4 pb-4">
+              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <div class="text">
+              <h3><b>Female manager of the week</b></h3>
+              <p>This award goes to the female manager with the highest points for a particluar weekday</p>
               </div>
+
             </div>
 
-            <div class="progress">
-              <span class="skill">Money <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="diffprizes">
+              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <div class="text">
+              <h3><b>Female manager of the month</b></h3>
+              <p>This award goes to the female manager with the highest points for a month</p>
               </div>
+
             </div>
 
-            <div class="progress">
-              <span class="skill">Entertainement <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
+          
 
           </div>
 
@@ -141,4 +153,15 @@ export default {
     justify-content: center;
     align-items: center;
   }
+  .price{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .diffprizes{
+    display: flex;
+    align-items: center;
+    // justify-content: space-around;
+  }
+
 </style>
