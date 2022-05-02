@@ -10,25 +10,25 @@
         <small>Select captain from the players below</small>
         <div class="players scroll">
             <div class="gk" @click="captain = selectedPlayers.gk" :class="captain == selectedPlayers.gk ? 's-captain' : null ">
-                <span class="position">GK - </span>{{ selectedPlayers.gk }}
+                <span class="position">GK - </span>{{ selectedPlayers.gk.username }}
                 <small class="cap" v-if="captain == selectedPlayers.gk">&copy;</small>
             </div>
             <div class="def" v-for="(def, index) in selectedPlayers.defender.players" :key="index" @click="captain = def" :class="captain == def ? 's-captain' : null ">
-                <span class="position">DEF - </span>{{ def }}
+                <span class="position">DEF - </span>{{ def.username }}
                 <small class="cap" v-if="captain == def">&copy;</small>
             </div>
             <div class="mid" v-for="(mid, index) in selectedPlayers.midfielders.players" :key="index" @click="captain = mid" :class="captain == mid ? 's-captain' : null ">
-                <span class="position">MID - </span>{{ mid }}
+                <span class="position">MID - </span>{{ mid.username }}
                 <small class="cap" v-if="captain == mid">&copy;</small>
             </div>
             <div class="att" v-for="(att, index) in selectedPlayers.attackers.players" :key="index" @click="captain = att" :class="captain == att ? 's-captain' : null ">
-                <span class="position">FWD - </span>{{ att }}
+                <span class="position">FWD - </span>{{ att.username }}
                 <small class="cap" v-if="captain == att">&copy;</small>
             </div>
         </div>
     </div>
     <div class="btn">
-        <button>
+        <button @click="$emit('save-team', captain)" :disabled="!captain" :style="!captain ? 'opacity: 0.5;' : null ">
             Submit Team
         </button>
     </div>
@@ -44,7 +44,7 @@ export default {
   },
   data() {
       return {
-          captain: {}
+          captain: ""
       }
   }
 }
