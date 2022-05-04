@@ -507,8 +507,8 @@ export default {
           console.log(error);
         });
     },
-  submitTeam(captain) { 
-      if(!this.enableSave.value) {
+  submitTeam() { 
+      if(this.enableSave.value) {
         this.enableSave.value = "You have selected more than 3 players from a team"
         setTimeout(() => {
           this.enableSave.error = ""
@@ -528,6 +528,10 @@ export default {
       }
     },
     paymentStep(captain){
+<<<<<<< HEAD
+=======
+      console.log(captain.id)
+>>>>>>> 31f6b45d65d82c99f7b2b107277c394683ff4a25
       if(this.$store.state.showPaymentGateway){
           this.$store.state.showPaymentGateway = true;
         } else {
