@@ -1,8 +1,8 @@
 <template>
   <div>
   <Navbar />
-  <Captain :selectedPlayers="selectedPlayers" v-if="showCaptain" v-on:close-btn="showCaptain = false" v-on:save-team="paymentStep"/>
-  <Payment v-if="$store.state.showPaymentGateway"/>
+  <Captain :selectedPlayers="selectedPlayers" v-if="showCaptain" v-on:close-btn="showCaptain = false" v-on:save-team="paymentStep" v-on:init-captain="initCaptain"/>
+  <Payment v-if="$store.state.showPaymentGateway" :captain="captain" v-on:save-user-team="paymentStep"/>
   <div class="payment-success flex" v-if="$store.state.paymentSuccessfulMessage">
     <span>{{ $store.state.paymentSuccessfulMessage }}</span>
     <span class="close-btn" @click="$store.state.paymentSuccessfulMessage = ''">&times;</span>
@@ -143,6 +143,7 @@
                   class="player-list"
                   v-for="player in unselectedplayers"
                   :key="player.id"
+                  @click="selectPlayer(player)"
                   :style="
                     selectedPlayers.gk == player
                       ? 'opacity: 0.5; pointer-events: none'
@@ -449,6 +450,7 @@ export default {
       search: "",
       selectedPosition: "all",
       unselectedplayers: [],
+      captain: "",
       selectedPlayers: {
         gk: "",
         attackers: {
@@ -477,14 +479,13 @@ export default {
       this.unselectedplayers = this.players;
     }, 5000);
 
-    axios.get(`https://lfl-app.herokuapp.com/api/userstatus/${this.$store.state.user.id}`)
+    axios.get(`https://lfl-app.herokuapp.com/api/userstatus/${localStorage.getItem("id")}`)
     .then((res) => {
       if(res.data.status === true) {
-        this.$store.state.showPaymentGateway = true
-      } else {
-        
-      }
+        this.$store.state.showPaymentGateway = false
+      } 
     })
+    .catch(err => this.error = err)
   },
   methods: {
     getSelectTeamStatus(){
@@ -536,11 +537,13 @@ export default {
         this.showCaptain = true
       }
     },
+    initCaptain(captain) {
+      this.captain = captain
+    },
     paymentStep(captain){
+      this.captain = captain
       // console.log(captain.id)
-      if(this.$store.state.showPaymentGateway){
-          this.$store.state.showPaymentGateway = true;
-        } else {
+      if(!this.$store.state.showPaymentGateway){
           axios
         .post(
           "https://lfl-app.herokuapp.com/api/createteam/",
