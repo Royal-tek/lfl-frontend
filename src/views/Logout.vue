@@ -8,6 +8,8 @@ export default {
     methods:{
     logout(){
         localStorage.removeItem('auth_token')
+        localStorage.removeItem('username')
+        localStorage.removeItem('email')
         window.location.href ="/"
     }
     },

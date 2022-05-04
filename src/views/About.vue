@@ -63,7 +63,7 @@
           <div class="col-lg-6 " data-aos="fade-left"  data-aos-delay="300">
 
             <div class="diffprizes mb-4 pb-4">
-              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <i class="fa fa-user fa-3x m5-3 pe-4"></i>
               <div class="text">
               <h3><b>Manager of the week</b></h3>
               <p>This award goes to the manager with the highest points for a particluar weekday</p>
@@ -72,7 +72,7 @@
             </div>
 
             <div class="diffprizes">
-              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <i class="fa fa-female fa-3x m5-3 pe-4"></i>
               <div class="text">
               <h3><b> Manager of the month</b></h3>
               <p>This award goes to the manager with the highest points for a month</p>
@@ -87,7 +87,7 @@
           <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-right"  data-aos-delay="300">
 
             <div class="diffprizes mb-4 pb-4">
-              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <i class="fa fa-bolt fa-3x m5-3 pe-4"></i>
               <div class="text">
               <h3><b>Female manager of the week</b></h3>
               <p>This award goes to the female manager with the highest points for a particluar weekday</p>
@@ -96,7 +96,7 @@
             </div>
 
             <div class="diffprizes">
-              <i class="fas fa-facebook m5-3 pe-3"></i>
+              <i class="fa fa-female fa-3x m5-3 pe-4"></i>
               <div class="text">
               <h3><b>Female manager of the month</b></h3>
               <p>This award goes to the female manager with the highest points for a month</p>

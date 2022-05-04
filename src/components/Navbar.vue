@@ -15,12 +15,9 @@
             <!-- <li><router-link to="/news" :class="{active : $route.name == 'News'}">News</router-link></li> -->
 
 
-            <li class="dropdown"><a href="#"><span :class="{active : $route.name == 'PostNews' || $route.name == 'LatestNews'}">News</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-                <li><router-link to="/news/postnews" :class="{active : $route.name == 'PostNews'}">Post News</router-link></li>
-                <li><router-link to="/news/latestnews" :class="{active : $route.name == 'LatestNews'}">Latest News</router-link></li>
-            </ul>
-            </li>
+        
+                <li><router-link to="/latestnews" :class="{active : $route.name == 'LatestNews'}">Latest News</router-link></li>
+        
 
 
 
@@ -31,6 +28,8 @@
                 <li><router-link to="/pickteam" :class="{active : $route.name == 'PickTeam'}">Pick Team</router-link></li>
             </ul>
             </li>
+            <li v-if="user[0]"><li v-if="user[0].is_staff == true"><router-link to="/postnews" class="getstarted" :class="{active : $route.name == 'PostNews'}">Post Lineup</router-link></li></li>
+
             <li v-if="user[0]"><li v-if="user[0].is_staff == true"><router-link to="/player-register" class="getstarted" :class="{active : $route.name == 'PlayerRegister'}"> Player Register</router-link></li></li>
             <li v-if="user[0]"><li v-if="user[0].is_staff == true"><router-link to="/coach-admin" class="getstarted">Coach Admin</router-link></li> </li>
 

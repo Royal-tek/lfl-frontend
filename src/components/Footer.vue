@@ -88,7 +88,7 @@
 
             </p>
             <p>
-            <router-link to="/news/latestnews" class="text-dark">Latest News</router-link>
+            <router-link to="/latestnews" class="text-dark">Latest News</router-link>
             <!-- <a href="#!" class="text-dark">Latest News</a> -->
             </p>
             <p>
