@@ -507,8 +507,8 @@ export default {
           console.log(error);
         });
     },
-  submitTeam(captain) { 
-      if(!this.enableSave.value) {
+  submitTeam() { 
+      if(this.enableSave.value) {
         this.enableSave.value = "You have selected more than 3 players from a team"
         setTimeout(() => {
           this.enableSave.error = ""
