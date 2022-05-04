@@ -14,7 +14,7 @@
         <div class="carousel-item active" style="background-image: url(assets/img/bg1.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Welcome to <span style="color:#16b37c;">LFL</span></h2>
+              <h2 class="animate__animated animate__fadeInDown">Welcome to <span style="color:#16b37c;">LFL </span><span class="text-uppercase">{{username}}</span></h2>
               <p class="animate__animated animate__fadeInUp">Select, predict and anticipate. Pick and manage your dream from the footballers you relate with.</p>
               <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
             </div>
@@ -160,6 +160,21 @@ import Navbar from '../components/Navbar.vue'
 
 export default {
   name: 'Home',
+  data(){
+    return{
+      username : ''
+    }
+    
+
+  },
+  methods:{
+    getusername(){
+      this.username = localStorage.getItem("username")
+    }
+  },
+  mounted(){
+    this.getusername()
+  },
   components: {
     Footer,Navbar
   },

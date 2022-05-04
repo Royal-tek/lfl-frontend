@@ -1,11 +1,16 @@
 <template>
     <div class="player-register-holder">
         <div class="container">
+            
             <div class="row">
                 
                 <div class="col register-column d-flex justify-content-center align-items-center">
                     
                     <div class="card register-card">
+                        <div class="error alert alert-danger" v-if="errors">
+                            <div v-for="error in errors" :key="error.id">{{error[0]}}</div>
+                        </div>
+                        <div v-if="successMsg" class="alert alert-success">{{ successMsg }}</div>
                         
                     <h3 class="text-center text-uppercase register-welcome-text my-2">Become a player now</h3>
                         <div class="row">
@@ -21,11 +26,7 @@
                                         <div class="col-md-8 text-center">
                                         <div class="input-group">
                                         <input type="text" class="form-control shadow-none user-input" placeholder="Firstname" v-model="registerInfo.firstname">
-                                        <!-- <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="fa fa-text p-1"></span>
-                                            </div>
-                                        </div> -->
+
                                         </div>
 
                                         <div class="input-group">
@@ -35,9 +36,7 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control shadow-none" placeholder="Username" v-model="registerInfo.username">
                                         </div>
-                                        <!-- <div class="help-text">
-                                        <small>Username must be uniqie!</small>
-                                        </div> -->
+
 
                                         <div class="input-group">
                                             <input type="number" class="form-control shadow-none" placeholder="Registered Kit Number" v-model="registerInfo.number">
@@ -53,7 +52,7 @@
                                         <div class="form-group">
                                             <select class="select" v-model="registerInfo.coach">
                                                 <option value="">Choose Your Coach</option>
-                                                <option class="text-uppercase" :value="coach.coach_team_user.id"  v-for="coach in coachInfo" :key="coach.id">{{coach.code_team_user.username}} of {{coach.team}}</option>
+                                                <option class="text-uppercase" :value="coach.id"  v-for="coach in coachInfo" :key="coach.id">{{coach.coach_team_user}} of {{coach.team}}</option>
                                                 
                                             </select>
                                         </div>
@@ -85,18 +84,7 @@
                                     </div>
                                 
                                     
-                                    
-                                    
-
-                                    <!-- {{registerInfo.firstname}}
-                                    {{registerInfo.lastname}}
-                                    {{registerInfo.username}}
-                                    {{registerInfo.coach}}
-                                    {{registerInfo.position}}
-                                    {{registerInfo.number}}
-                                    {{registerInfo.team}}
-                                    {{registerInfo.image}} -->
-
+          
                                     
                                 
                                 </form>
@@ -142,6 +130,8 @@ export default {
                 number: "",
                 team : ""
             },
+            errors: "",
+            successMsg: ""
         }
     },
     mounted(){
@@ -150,11 +140,10 @@ export default {
     methods:{
         getCoachInfo(){
             axios.get("https://lfl-app.herokuapp.com/api/listallcoaches/")
-            .then(response=>{
-                console.log(response.data)
+            .then(response=>{    
                 this.coachInfo = response.data
-                console.log(this.coachInfo)
             })
+
             .catch(error=>{
                 console.log(error)
             })
@@ -175,9 +164,20 @@ export default {
 
             axios.post("https://lfl-app.herokuapp.com/api/createplayers/", fd)
             .then(response=>{
-                response.data
+                this.successMsg = "Player Registered Successfully"
+                setTimeout(() => {this.successMsg = ""}, 4000)
+                this.registerInfo.firstname = ''
+                this.registerInfo.lastname = ''
+                this.registerInfo.username = ''
+                this.registerInfo.position = ''
+                this.registerInfo.team = ''
+                this.registerInfo.coach = ''
+                this.registerInfo.number = ''
+                console.log(response.data)
             })
             .catch(error=>{
+                this.errors = error.response.data
+                setTimeout(() => {this.errors = ""}, 4000) 
                 console.log(error.response.data)
             })
         }
@@ -189,7 +189,7 @@ export default {
 .player-register-holder{
     width: 100%;
     height: 100vh;
-    background: radial-gradient(rgba(4, 61, 39, 0.7),rgba(5, 161, 93, 0.7)), url(/assets/img/bg2.jpg);
+    background: radial-gradient(rgba(4, 61, 39, 0.7),rgba(5, 161, 93, 0.7)), url(/assets/img/tim.png);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;

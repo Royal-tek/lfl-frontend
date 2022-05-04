@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
 import About from '../views/About.vue'
-import News from '../views/News.vue'
 import Rules from '../views/Rules.vue'
 import Contact from '../views/Contact.vue'
 import Login from '../views/Login.vue'
@@ -10,8 +9,8 @@ import Register from '../views/Register.vue'
 import MyTeam from '../views/MyTeam.vue'
 import Ranking from '../views/Ranking.vue'
 import PickTeam from '../views/PickTeam.vue'
-import PostNews from '../components/PostNews.vue'
-import LatestNews from '../components/LatestNews.vue'
+import PostNews from '../views/PostNews.vue'
+import LatestNews from '../views/LatestNews.vue'
 import Logout from '../views/Logout.vue'
 import CoachAdmin from '../views/CoachAdmin.vue'
 import PlayerRegister from '../views/PlayerRegister.vue'
@@ -49,38 +48,33 @@ const routes = [
       leaveClass:"animate__animated animate__fadeOutRight",
     }
   },
+
   {
-    path: '/news',
-    name: 'News',
-    component: News,
-    meta:{
-      enterClass:"animate__animated animate__fadeInLeft",
-      leaveClass:"animate__animated animate__fadeOutRight",
-    },
-    children :[
-      {
-        path : 'postnews',
+    path : '/postnews',
         name : 'PostNews',
         component: PostNews,
         meta:{
           enterClass:"animate__animated animate__fadeInLeft",
           leaveClass:"animate__animated animate__fadeOutRight",
         }
-      },
-      {
-        path : 'latestnews',
-        name : 'LatestNews',
-        component: LatestNews,
-        meta:{
-          enterClass:"animate__animated animate__fadeInLeft",
-          leaveClass:"animate__animated animate__fadeOutRight",
-        }
-      }
-    ]
   },
+  
   {
-    path: '/contact-us',
-    name: 'Contact',
+    path : '/latestnews',
+    name : 'LatestNews',
+    component: LatestNews,
+    meta:{
+      enterClass:"animate__animated animate__fadeInLeft",
+      leaveClass:"animate__animated animate__fadeOutRight",
+    }
+  },
+
+
+    
+
+  {
+    path: '/review',
+    name: 'Review',
     component: Contact,
     meta:{
       enterClass:"animate__animated animate__fadeInLeft",
@@ -127,7 +121,7 @@ const routes = [
     }
   },
   {
-    path: '/ranking',
+    path: '/leaderboards',
     name: 'Ranking',
     component: Ranking,
     meta:{

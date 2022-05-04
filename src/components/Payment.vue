@@ -55,9 +55,16 @@ export default {
       callback(){
         axios.get(`https://lfl-app.herokuapp.com/api/verify/payment/${this.reference}/`)
         .then(res => {
-            if(res.data.status){
+            if(res.data.status == "successfull"){
               this.$store.state.showPaymentGateway = false
               this.$store.state.paymentSuccessfulMessage = "Payment of 1,000 was successful"
+              axios.post(`https://lfl-app.herokuapp.com/api/userstatus/${this.$store.state.user.id}`, {
+                status: true
+              })
+              .then((res) => {
+                console.log(res.data)
+              })
+              .catch(err => console.log(`Error: ${err}`))
             }
         })
         .catch(err => {

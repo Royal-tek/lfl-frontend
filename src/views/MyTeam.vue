@@ -209,9 +209,7 @@ export default {
                 this.week = response.data[response.data.length - 1].week
                 this.weekPoints = response.data[response.data.length - 1].get_points
                 this.team.captain = response.data[response.data.length -1].captain[0]
-                response.data.forEach((week) => {
-                    this.overallPoints += week.get_points
-                })
+            
                 console.log(response.data)
             })
             .catch(error=>{

@@ -18,16 +18,14 @@
     <!-- Right -->
     <div>
     
-        <a href="https://www.google.com" target="_blank" class="text-white me-4">
-        <i class="fab fa-google"></i>
-        </a>
+    
         <a href="https://www.instagram.com/heis__royal" target="_blank" class="text-white me-4">
         <i class="fab fa-instagram"></i>
         </a>
         <a href="https://www.linkedin.com" target="_blank" class="text-white me-4">
         <i class="fab fa-linkedin"></i>
         </a>
-        <a href="https://www.github.com" target="_blank" class="text-white me-4">
+        <a href="https://github.com/Royal-tek/" target="_blank" class="text-white me-4">
         <i class="fab fa-github"></i>
         </a>
     </div>
@@ -94,11 +92,11 @@
             <!-- <a href="#!" class="text-dark">Latest News</a> -->
             </p>
             <p>
-            <router-link to="/ranking" class="text-dark">Leader Boards</router-link>
+            <router-link to="/leaderboards" class="text-dark">Leader Boards</router-link>
             <!-- <a href="#!" class="text-dark">Leader Boards</a> -->
             </p>
             <p>
-            <router-link to="/contact-us" class="text-dark">Contact Us</router-link>
+            <router-link to="/review" class="text-dark">Reviews</router-link>
             <!-- <a href="contact-us" class="text-dark">Contact Us</a> -->
             </p>
         </div>

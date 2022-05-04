@@ -1,10 +1,13 @@
+
 <template>
-    <div class="latest-news">
+<div>
+    <Navbar/>
+     <div class="latest-news">
         <div class="news py-2">
         <section id="breadcrumbs" class="breadcrumbs">
             <div class="container">
                 <div class="about-holder">
-                    <h2 class="about-text" data-aos="fade-down"  data-aos-delay="300">Latest News</h2>
+                    <h2 class="about-text" data-aos="fade-down"  data-aos-delay="300">Check the line ups from your favourite coaches</h2>
                 </div>
             </div>
         </section><!-- End Breadcrumbs -->
@@ -73,18 +76,7 @@
                     </form>
                 </div><!-- End sidebar search formn-->
 
-                <h3 class="sidebar-title">Categories</h3>
-                <div class="sidebar-item categories">
-                    <ul>
-                    <li><a href="#">General <span>(25)</span></a></li>
-                    <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                    <li><a href="#">Travel <span>(5)</span></a></li>
-                    <li><a href="#">Design <span>(22)</span></a></li>
-                    <li><a href="#">Creative <span>(8)</span></a></li>
-                    <li><a href="#">Educaion <span>(14)</span></a></li>
-                    </ul>
-                </div><!-- End sidebar categories-->
-
+           
                 <h3 class="sidebar-title">Recent Posts</h3>
                 <div class="sidebar-item recent-posts">
                     <div class="post-item clearfix">
@@ -102,15 +94,7 @@
 
                 </div><!-- End sidebar recent posts-->
 
-                <h3 class="sidebar-title">Tags</h3>
-                <div class="sidebar-item tags">
-                    <ul>
-                    <li><a href="#">App</a></li>
-                    <li><a href="#">IT</a></li>
-                    <li><a href="#">Business</a></li>
-
-                    </ul>
-                </div><!-- End sidebar tags-->
+            
 
                 </div><!-- End sidebar -->
 
@@ -122,9 +106,16 @@
     </section><!-- End Blog Section -->
     </div>
     </div>
+    <Footer/>
+    </div>
 </template>
 
+
+
 <script>
+import Footer from '../components/Footer.vue'
+import Navbar from '../components/Navbar.vue'
+
 import axios from 'axios'
 export default {
     name : 'LatestNews',
@@ -133,12 +124,15 @@ export default {
             news : []
         }
     },
+    components: {
+    Footer,Navbar
+    },
     mounted(){
         this.loadNews()
     },
     methods:{
         loadNews(){
-            axios.get("http://lfl-app.herokuapp.com/api/news/")
+            axios.get("https://lfl-app.herokuapp.com/api/news/")
             .then(response=>{
                 this.news = response.data
                 console.log(this.news)

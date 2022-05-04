@@ -476,6 +476,15 @@ export default {
     setTimeout(() => {
       this.unselectedplayers = this.players;
     }, 5000);
+
+    axios.get(`https://lfl-app.herokuapp.com/api/userstatus/${this.$store.state.user.id}`)
+    .then((res) => {
+      if(res.data.status === true) {
+        this.$store.state.showPaymentGateway = true
+      } else {
+        
+      }
+    })
   },
   methods: {
     getSelectTeamStatus(){
@@ -483,7 +492,7 @@ export default {
       .get("https://lfl-app.herokuapp.com/api/displayplayers/")
       .then(response =>{
         this.selectTeam = response.data
-        console.log(response.data)
+        console.log("status",response.data)
       })
     },
     getUser() {
@@ -528,7 +537,7 @@ export default {
       }
     },
     paymentStep(captain){
-      console.log(captain.id)
+      // console.log(captain.id)
       if(this.$store.state.showPaymentGateway){
           this.$store.state.showPaymentGateway = true;
         } else {
@@ -536,7 +545,7 @@ export default {
         .post(
           "https://lfl-app.herokuapp.com/api/createteam/",
           {
-            user: this.user[0].id,
+            // user: this.user[0].id,
             attackers: this.selectedPlayers.attackers.players.map((p) => p.id),
             defenders: this.selectedPlayers.defender.players.map((p) => p.id),
             midfielders: this.selectedPlayers.midfielders.players.map(
@@ -552,7 +561,7 @@ export default {
             },
           }
         )
-        .then((response) => {
+        .then(() => {
           this.$swal({
                 icon:'success',
                 title: 'Success',
