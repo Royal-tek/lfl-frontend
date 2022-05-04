@@ -529,7 +529,7 @@ export default {
     },
     paymentStep(captain){
       console.log(captain.id)
-      if(!this.$store.state.showPaymentGateway){
+      if(this.$store.state.showPaymentGateway){
           this.$store.state.showPaymentGateway = true;
         } else {
           axios

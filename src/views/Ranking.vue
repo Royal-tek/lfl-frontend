@@ -18,16 +18,16 @@
             <tr>
             <th scope="col">#</th>
             <th scope="col">Team Manager - Team Name</th>
-            <th scope="col">Game Week</th>
+            <!-- <th scope="col">Game Week</th> -->
             <th scope="col">Points</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="user in users" :key="user.id">
-            <th scope="row">1</th>
-            <td><b>{{user.username}}</b> - royal's boys</td>
-            <td>1</td>
-            <td>100</td>
+            <tr v-for="(user, index) in users" :key="user.id">
+                <th scope="row">{{ index + 1 }}</th>
+                <td class="text-capitalize"><b>{{ user.user }}'s Team</b> </td>
+                <!-- <td>{{ user.week }}</td> -->
+                <td>{{ user.total_points }}</td>
             </tr>
             <!-- <tr>
             <th scope="row">2</th>
@@ -60,10 +60,16 @@ data(){
 },
 methods:{
     getUsers(){
+        function removeDuplicates(arr) {
+            return arr.filter((item, 
+                index) => arr.indexOf(item) === index);
+        }
+    
         axios.get("https://lfl-app.herokuapp.com/api/userteams/"    )
-        .then(response=>{
-            this.users = response.data
+        .then(response =>{
+            // this.users = response.data
             console.log(response.data)
+            this.users = removeDuplicates(response.data)
         })
         .catch(error=>{
             console.log(error)
