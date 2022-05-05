@@ -23,6 +23,7 @@
           </div>
         </main>
       </main>
+      
 
       
       <section
@@ -34,6 +35,7 @@
           <div class="about-holder">
             <h2 class="about-text" data-aos="fade-down" data-aos-delay="300" style="font-family: 'Karla; font-size: 3rem'">
               Select Players
+              <!-- {{ selectedPlayers }} -->
             </h2>
           </div>
         </div>
@@ -143,7 +145,6 @@
                   class="player-list"
                   v-for="player in unselectedplayers"
                   :key="player.id"
-                  @click="selectPlayer(player)"
                   :style="
                     selectedPlayers.gk == player
                       ? 'opacity: 0.5; pointer-events: none'
@@ -682,7 +683,7 @@ export default {
         this.selectedPlayers.attackers.players.includes(player) ||
         this.selectedPlayers.gk == player
       ) {
-        this.playerError = "Player Already Included in Your Team!";
+        this.playerError = "Player already included in your team!";
         setTimeout(() => {
           this.playerError = "";
         }, 3000);

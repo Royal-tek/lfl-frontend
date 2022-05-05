@@ -60,16 +60,11 @@ data(){
 },
 methods:{
     getUsers(){
-        function removeDuplicates(arr) {
-            return arr.filter((item, 
-                index) => arr.indexOf(item) === index);
-        }
-    
-        axios.get("https://lfl-app.herokuapp.com/api/userteams/"    )
+        axios.get("https://lfl-app.herokuapp.com/api/userteams/")
         .then(response =>{
             // this.users = response.data
             console.log(response.data)
-            this.users = removeDuplicates(response.data)
+            this.users = response.data.filter(user => user.week === 7)
         })
         .catch(error=>{
             console.log(error)
