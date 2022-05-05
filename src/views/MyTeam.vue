@@ -209,6 +209,7 @@ export default {
                 this.week = response.data[response.data.length - 1].week
                 this.weekPoints = response.data[response.data.length - 1].get_points
                 this.team.captain = response.data[response.data.length -1].captain[0]
+                this.overallPoints = response.data[response.data.length -1].total_points
             
                 console.log(response.data)
             })
