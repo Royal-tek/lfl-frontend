@@ -190,10 +190,10 @@ export default {
     width: 100%;
     height: 100vh;
     background: radial-gradient(rgba(4, 61, 39, 0.7),rgba(5, 161, 93, 0.7)), url(/assets/img/tim.png);
-    /* background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    /* background-size: cover; */
+    background-size: cover;
 }
 
 .register-column{
@@ -202,7 +202,7 @@ export default {
     /* background-color: black; */
 }
 .register-card{
-    padding: 12px;
+    padding: 30px;
     opacity: .9;
 }
 input{

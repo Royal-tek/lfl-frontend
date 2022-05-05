@@ -128,15 +128,15 @@
         <div class="stats">
             <div>
                 <div class="name">Form</div>
-                <div class="value">1.5</div>
+                <div class="value">{{ allPoints !== 0 ? ( allPoints / playerCurrentPoint ) : '_' }}</div>
             </div>
             <div>
                 <div class="name">This Week Points</div>
-                <div class="value">6</div>
+                <div class="value">{{ playerCurrentPoint }}</div>
             </div>
             <div>
                 <div class="name">Total Points</div>
-                <div class="value">50</div>
+                <div class="value">{{allPoints}}</div>
             </div>
         </div>
       </div>
@@ -167,6 +167,8 @@ export default {
         return{
             user: "",
             week: '',
+            allPoints: 0,
+            playerCurrentPoint: 0,
             weekPoints: "",
             overallPoints: 0,
             team: {
@@ -196,10 +198,18 @@ export default {
     },
     methods:{
         displayInfo(player){
+            let allPoints = 0;
             this.modalContent.firstname = player.firstname
             this.modalContent.lastname = player.lastname
             this.modalContent.position = player.position
             this.modalContent.team = player.team
+            player.playerpoint.forEach((value) => {
+                this.playerCurrentPoint = value.points
+            })
+            player.playerpoint.forEach((value) => {
+                allPoints += value.points
+                this.allPoints = Number(allPoints)
+            })
             this.showModal = true
         },
         getPlayers(){
