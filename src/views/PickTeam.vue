@@ -385,6 +385,22 @@
         </div>
       </div>
     </div>
+    <section class="instructions my-3 py-3">
+      <h1 class="text-uppercase text-center">How to play</h1>
+      <div class="container">      
+        <div class="row">
+          <div class="col-md-6 my-2 py-2">
+            <h3 class="text-center">SELECTING A TEAM</h3>
+            <ol>
+              <li>Select a valid formation then click generate formation, you cannot have more than 5 players on a row.</li>
+              <li>When formation has been generated pick desired team from players of your choice, <br> NOTE: You cannot have more than 3 players from the same team unless you would not be able to save your team.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
     <Footer />
     </div>
 </template>
@@ -815,7 +831,23 @@ export default {
   },
 };
 </script>
-    <style scoped lang=scss>
+
+<style scoped lang=scss>
+.instructions{
+  h1{
+    color: black;
+
+    &::after{
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: #16b37c;
+      margin: 10px auto;
+      content : ''
+    }
+  }
+
+}
 .field {
   background-image: url('https://i.pinimg.com/originals/d7/b0/55/d7b05539aac8c5416c73ca046f977742.jpg');
   height: 900px;
