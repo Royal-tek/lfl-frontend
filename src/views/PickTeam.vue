@@ -145,6 +145,7 @@
                   class="player-list"
                   v-for="player in unselectedplayers"
                   :key="player.id"
+                  @click="selectPlayer(player)"
                   :style="
                     selectedPlayers.gk == player
                       ? 'opacity: 0.5; pointer-events: none'
@@ -159,7 +160,7 @@
                   "
                 >
                   <span><b id="player-pos">{{ player.position.toLowerCase() }}</b> - {{ player.firstname.toLowerCase() }} {{ player.lastname.toLowerCase() }}({{ player.team.toUpperCase() }})</span>
-                  <span @click="selectPlayer(player)">
+                  <span>
                     <i class="fa fa-plus"></i>
                   </span>
                 </div>
