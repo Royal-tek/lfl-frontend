@@ -25,7 +25,7 @@
         <tbody>
             <tr v-for="(user, index) in users" :key="user.id">
                 <th scope="row">{{ index + 1 }}</th>
-                <td class="text-capitalize"><b>Team {{ user.user }}</b> </td>
+                <td class="text-capitalize"><b>Team {{ user.username }}</b> </td>
                 <!-- <td>{{ user.week }}</td> -->
                 <td>{{ user.total_points }}</td>
             </tr>
@@ -60,11 +60,11 @@ data(){
 },
 methods:{
     getUsers(){
-        axios.get("https://lfl-app.herokuapp.com/api/userteams/")
+        axios.get("https://lfl-app.herokuapp.com/api/listusers/")
         .then(response =>{
             // this.users = response.data
             console.log(response.data)
-            this.users = response.data.filter(user => user.week === 7)
+            this.users = response.data
         })
         .catch(error=>{
             console.log(error)
