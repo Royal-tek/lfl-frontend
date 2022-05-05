@@ -61,10 +61,10 @@ data(){
 methods:{
     getUsers(){
         axios.get("https://lfl-app.herokuapp.com/api/userteams/")
-        .then(response=>{
-            this.users = response.data
+        .then(response =>{
+            // this.users = response.data
             console.log(response.data)
-            this.users = removeDuplicates(response.data)
+            this.users = response.data.filter(user => user.week === 7)
         })
         .catch(error=>{
             console.log(error)

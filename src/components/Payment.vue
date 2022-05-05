@@ -27,6 +27,7 @@ import axios from 'axios';
 import paystack from "vue3-paystack";
 
 export default {
+    props: ['captain'],
     components: {
         paystack
     },
@@ -58,12 +59,19 @@ export default {
             if(res.data.status){
               this.$store.state.showPaymentGateway = false
               this.$store.state.paymentSuccessfulMessage = "Payment of 1,000 was successful"
+              axios.put(`https://lfl-app.herokuapp.com/api/userstatus/${localStorage.getItem("id")}`, {
+                status: true
+              })
+              .then((res) => {
+                console.log(res.data)
+                this.$emit('save-user-team', this.captain)
+              })
+              .catch(err => console.log(`Error: ${err}`))
             }
         })
         .catch(err => {
           console.log(err)
         })
-        console.log("Payment done!")
       },
       onCancel(){
           this.$store.state.showPaymentGateway = false

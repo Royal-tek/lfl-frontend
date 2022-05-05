@@ -1,8 +1,8 @@
 <template>
   <div>
   <Navbar />
-  <Captain :selectedPlayers="selectedPlayers" v-if="showCaptain" v-on:close-btn="showCaptain = false" v-on:save-team="paymentStep"/>
-  <Payment v-if="$store.state.showPaymentGateway"/>
+  <Captain :selectedPlayers="selectedPlayers" v-if="showCaptain" v-on:close-btn="showCaptain = false" v-on:save-team="paymentStep" v-on:init-captain="initCaptain"/>
+  <Payment v-if="$store.state.showPaymentGateway" :captain="captain" v-on:save-user-team="paymentStep"/>
   <div class="payment-success flex" v-if="$store.state.paymentSuccessfulMessage">
     <span>{{ $store.state.paymentSuccessfulMessage }}</span>
     <span class="close-btn" @click="$store.state.paymentSuccessfulMessage = ''">&times;</span>
@@ -23,6 +23,7 @@
           </div>
         </main>
       </main>
+      
 
       
       <section
@@ -34,6 +35,7 @@
           <div class="about-holder">
             <h2 class="about-text" data-aos="fade-down" data-aos-delay="300" style="font-family: 'Karla; font-size: 3rem'">
               Select Players
+              <!-- {{ selectedPlayers }} -->
             </h2>
           </div>
         </div>
@@ -143,6 +145,7 @@
                   class="player-list"
                   v-for="player in unselectedplayers"
                   :key="player.id"
+                  @click="selectPlayer(player)"
                   :style="
                     selectedPlayers.gk == player
                       ? 'opacity: 0.5; pointer-events: none'
@@ -157,7 +160,7 @@
                   "
                 >
                   <span><b id="player-pos">{{ player.position.toLowerCase() }}</b> - {{ player.firstname.toLowerCase() }} {{ player.lastname.toLowerCase() }}({{ player.team.toUpperCase() }})</span>
-                  <span @click="selectPlayer(player)">
+                  <span>
                     <i class="fa fa-plus"></i>
                   </span>
                 </div>
@@ -449,6 +452,7 @@ export default {
       search: "",
       selectedPosition: "all",
       unselectedplayers: [],
+      captain: "",
       selectedPlayers: {
         gk: "",
         attackers: {
@@ -476,6 +480,14 @@ export default {
     setTimeout(() => {
       this.unselectedplayers = this.players;
     }, 5000);
+
+    axios.get(`https://lfl-app.herokuapp.com/api/userstatus/${localStorage.getItem("id")}`)
+    .then((res) => {
+      if(res.data.status === true) {
+        this.$store.state.showPaymentGateway = false
+      } 
+    })
+    .catch(err => this.error = err)
   },
   methods: {
     getSelectTeamStatus(){
@@ -526,6 +538,9 @@ export default {
       } else {
         this.showCaptain = true
       }
+    },
+    initCaptain(captain) {
+      this.captain = captain
     },
     paymentStep(captain){
       if(this.$store.state.showPaymentGateway){
@@ -669,7 +684,7 @@ export default {
         this.selectedPlayers.attackers.players.includes(player) ||
         this.selectedPlayers.gk == player
       ) {
-        this.playerError = "Player Already Included in Your Team!";
+        this.playerError = "Player already included in your team!";
         setTimeout(() => {
           this.playerError = "";
         }, 3000);

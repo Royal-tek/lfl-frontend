@@ -70,6 +70,8 @@ export default {
                 this.user = response.data
                 localStorage.setItem("email", response.data[0].email)
                 localStorage.setItem("username", response.data[0].username)
+                localStorage.setItem("id", response.data[0].id)
+                this.$store.state.user = response.data[0]
                 console.log(response.data)
             })
             .catch(error=>{

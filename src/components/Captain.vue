@@ -28,9 +28,12 @@
         </div>
     </div>
     <div class="btn">
-        <button @click="$emit('save-team', captain)" :disabled="!captain" :style="!captain ? 'opacity: 0.5;' : null ">
+        <button @click="pickTeam(captain)" :disabled="!captain" :style="!captain ? 'opacity: 0.5;' : null ">
             Submit Team
         </button>
+        <div v-if="loading">
+             Loading...
+        </div>
     </div>
      
     </div>
@@ -38,14 +41,35 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   props: {
       selectedPlayers: Object
   },
   data() {
       return {
-          captain: ""
+          captain: "",
+          loading: false
       }
+  },
+  methods: {
+    pickTeam(captain){
+        axios.get(`https://lfl-app.herokuapp.com/api/userstatus/${localStorage.getItem("id")}`)
+        .then((res) => {
+            if(res.data.status === true) {
+                this.loading = true
+                this.$store.state.showPaymentGateway = false
+                this.$emit('save-team', captain)
+            } else {
+                this.loading = true
+                this.$store.state.showPaymentGateway = true
+                this.$emit('init-captain', captain)
+                setTimeout(() => this.loading = false, 4000)
+            }
+        })
+        .catch(err => this.error = err)
+    }
   }
 }
 </script>
@@ -142,6 +166,10 @@ export default {
         cursor: pointer;
         background-color: #00b173;
         color: #fff;
+    }
+
+    button:hover {
+        background: #00eb99;
     }
 
     .gk span {
