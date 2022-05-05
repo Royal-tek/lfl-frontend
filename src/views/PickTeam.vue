@@ -390,12 +390,28 @@
       <div class="container">      
         <div class="row">
           <div class="col-md-6 my-2 py-2">
-            <h3 class="text-center">SELECTING A TEAM</h3>
+            <h3 class="text-center">SELECTING A TEAM FOR THE FIRST TIME</h3>
             <ol>
-              <li>Select a valid formation then click generate formation, you cannot have more than 5 players on a row.</li>
-              <li>When formation has been generated pick desired team from players of your choice, <br> NOTE: You cannot have more than 3 players from the same team unless you would not be able to save your team.</li>
+              <li><p>Select a valid formation then click generate formation, you cannot have more than 5 players on a row.
+                <b>NOTE:</b>For this version of this application substitues are not available , just your first 11 players</p></li>
+              <li><p>When formation has been generated pick desired team from players of your choice, 
+                <br> <b>NOTE</b>: You cannot have more than 3 players from the same department else you would not be able to save your team.</p></li>
+              <li><p>When team has been picked and satisfies desired restrictions and conditions click save team and you would be asked for a one time payment of a Thousand Naira.<br>
+              <b>NOTE</b>: This payment is a <b>one time payment</b> as next time you want to create your team you would not be required to pay again.</p></li>
+              <li><p>When you have successfully clicked on save team and made payment then you would be asked to choose your captain, <br>
+              When captain is chosen , click on submit team and you will recieve a succes message indicating that your team has been created successfully then you would be redirected to 
+              the <b>MY TEAM</b> page where you would be able to manage your team.</p></li>
             </ol>
           </div>
+
+          <div class="col-md-6 my-2 py-2">
+            <h3 class="text-center">UPDATING YOUR TEAM</h3>
+              <ol>
+                <li><p></p></li>
+              </ol>
+
+          </div>
+
         </div>
       </div>
 

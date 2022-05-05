@@ -64,7 +64,7 @@ methods:{
         .then(response =>{
             // this.users = response.data
             console.log(response.data)
-            this.users = response.data
+            this.users = response.data.sort((a, b) => b.total_points - a.total_points)
         })
         .catch(error=>{
             console.log(error)
