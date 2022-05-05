@@ -909,9 +909,8 @@ export default {
   }
   .player-info {
     background-color: #16b37c;
-    padding: 5px;
-    padding-bottom: -10px;
-    /* width: 100%; */
+    padding-top: 5px;
+    width: 120px;
     text-align: center;
     color: #fff;
     cursor: pointer;
@@ -1074,7 +1073,7 @@ input[type="submit"] {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   text-transform: uppercase;
-  /* width: 100%; */
+  width: 120px;
 }
 .player-row {
   width: 85%;

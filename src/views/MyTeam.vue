@@ -25,7 +25,8 @@
                             <div class="my-1 gk">
                             <h6> {{ gk ? gk.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <div class="gk-player-point">{{ gk.playerpoint[gk.playerpoint.length - 1] ? gk.playerpoint[team.gk[0].playerpoint.length - 1].points : 'x' }}</div>
+                            <div class="gk-player-point" v-if="team.captain.id === gk.id">{{ gk.playerpoint[gk.playerpoint.length - 1] ? gk.playerpoint[team.gk[0].playerpoint.length - 1].points * 2 : 'x' }}</div>
+                            <div class="gk-player-point" v-else>{{ gk.playerpoint[gk.playerpoint.length - 1] ? gk.playerpoint[team.gk[0].playerpoint.length - 1].points : 'x' }}</div>
                         </div>
                     </div>
                     
@@ -41,7 +42,8 @@
                             <div class="player-info my-1">
                             <h6> {{ defender ? defender.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <div class="player-point">{{ defender.playerpoint[defender.playerpoint.length - 1] ? defender.playerpoint[defender.playerpoint.length - 1].points : 'x' }}</div>
+                            <div class="player-point" v-if="team.captain.id === defender.id">{{ midfielder.playerpoint[defender.playerpoint.length - 1] ? defender.playerpoint[defender.playerpoint.length - 1].points * 2 : 'x' }}</div>
+                            <div class="player-point" v-else>{{ defender.playerpoint[defender.playerpoint.length - 1] ? defender.playerpoint[defender.playerpoint.length - 1].points : 'x' }}</div>
                         </div>
                     </div>
 
@@ -57,7 +59,8 @@
                             <div class="player-info my-1">
                             <h6> {{ midfielder ? midfielder.username.toLowerCase() : 'name' }}</h6>
                             </div>
-                            <div class="player-point">{{ midfielder.playerpoint[midfielder.playerpoint.length - 1] ? midfielder.playerpoint[midfielder.playerpoint.length - 1].points : 'x' }}</div>
+                            <div class="player-point" v-if="team.captain.id === midfielder.id">{{ midfielder.playerpoint[midfielder.playerpoint.length - 1] ? midfielder.playerpoint[midfielder.playerpoint.length - 1].points * 2 : 'x' }}</div>
+                            <div class="player-point" v-else>{{ midfielder.playerpoint[midfielder.playerpoint.length - 1] ? midfielder.playerpoint[midfielder.playerpoint.length - 1].points : 'x' }}</div>
                         </div>
                     </div>
 
@@ -73,7 +76,8 @@
                            <div class="player-info my-1">
                             <h6> {{ attacker ? attacker.username.toLowerCase() : "name" }}</h6>
                             </div>
-                            <div class="player-point">{{ attacker.playerpoint[attacker.playerpoint.length - 1] ? attacker.playerpoint[attacker.playerpoint.length -1].points : 'x' }}</div>
+                             <div class="player-point" v-if="team.captain.id === attacker.id">{{ attacker.playerpoint[attacker.playerpoint.length - 1] ? attacker.playerpoint[attacker.playerpoint.length - 1].points * 2 : 'x' }}</div>
+                            <div class="player-point" v-else>{{ attacker.playerpoint[attacker.playerpoint.length - 1] ? attacker.playerpoint[attacker.playerpoint.length - 1].points : 'x' }}</div>
                         </div>
                     </div>
                 </div>
