@@ -392,13 +392,13 @@
           <div class="col-md-6 my-2 py-2">
             <h3 class="text-center">SELECTING A TEAM FOR THE FIRST TIME</h3>
             <ol>
-              <li><p>Select a valid formation then click generate formation, you cannot have more than 5 players on a row.
-                <b>NOTE:</b>For this version of this application substitues are not available , just your first 11 players</p></li>
-              <li><p>When formation has been generated pick desired team from players of your choice, 
+              <li style="text-align:justify;"><p>Select a valid formation then click generate formation, you cannot have more than 5 players on a row.<br>
+                <b>NOTE: </b>For this version of this application substitues are not available , just your first 11 players</p></li>
+              <li style="text-align:justify;"><p>When formation has been generated pick desired team from players of your choice, 
                 <br> <b>NOTE</b>: You cannot have more than 3 players from the same department else you would not be able to save your team.</p></li>
-              <li><p>When team has been picked and satisfies desired restrictions and conditions click save team and you would be asked for a one time payment of a Thousand Naira.<br>
+              <li style="text-align:justify;"><p>When team has been picked and satisfies desired restrictions and conditions click save team and you would be asked for a one time payment of a Thousand Naira.<br>
               <b>NOTE</b>: This payment is a <b>one time payment</b> as next time you want to create your team you would not be required to pay again.</p></li>
-              <li><p>When you have successfully clicked on save team and made payment then you would be asked to choose your captain, <br>
+              <li style="text-align:justify;"><p>When you have successfully clicked on save team and made payment then you would be asked to choose your captain, 
               When captain is chosen , click on submit team and you will recieve a succes message indicating that your team has been created successfully then you would be redirected to 
               the <b>MY TEAM</b> page where you would be able to manage your team.</p></li>
             </ol>
@@ -407,7 +407,8 @@
           <div class="col-md-6 my-2 py-2">
             <h3 class="text-center">UPDATING YOUR TEAM</h3>
               <ol>
-                <li><p></p></li>
+                <li><p>Each new week every user has a window of selecting their desired team, A user can pick a completely new team every week.</p></li>
+                <li><p>There would be a time frame for which users will be able to select team, When the time frame is locked users would be unable to select a new team for that week.</p></li>
               </ol>
 
           </div>
