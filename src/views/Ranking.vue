@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(user, index) in users" :key="user.id" :style="user.id == userId ? 'background-color:  rgb(33, 209, 146, 0.1)' : ''">
+            <tr @click="user.id == userId ? $router.push('/myteam') : null" v-for="(user, index) in users" :key="user.id" :style="user.id == userId ? 'background-color:  rgb(33, 209, 146, 0.1); cursor: pointer;' : ''">
                 <td scope="row">{{ index + 1 }}</td>
                 <td class="text-capitalize"><b>Team {{ user.username }}</b> </td>
                 <!-- <td>{{ user.week }}</td> -->
