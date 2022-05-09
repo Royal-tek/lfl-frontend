@@ -232,8 +232,7 @@
             <td>BONUS POINTS</td>
             <td><b>1, 2, 3</b></td>
         </tr>
-        <h5>REMEMBER TO ADD POINTS BASED ON TIMING AND MINUTES PLAYED</h5>
-        
+    
 
     
 
