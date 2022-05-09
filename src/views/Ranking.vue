@@ -23,8 +23,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(user, index) in users" :key="user.id">
-                <th scope="row">{{ index + 1 }}</th>
+            <tr v-for="(user, index) in users" :key="user.id" :style="user.id == userId ? 'background-color:  rgb(33, 209, 146, 0.1)' : ''">
+                <td scope="row">{{ index + 1 }}</td>
                 <td class="text-capitalize"><b>Team {{ user.username }}</b> </td>
                 <!-- <td>{{ user.week }}</td> -->
                 <td>{{ user.total_points }}</td>
@@ -55,7 +55,8 @@ components: {
 },
 data(){
     return{
-        users : []
+        users : [],
+        userId: localStorage.getItem("id")
     }
 },
 methods:{

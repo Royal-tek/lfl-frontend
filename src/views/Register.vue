@@ -20,8 +20,7 @@
                             </div>
                             <div class="loader" style="text-align: center" v-if="!error && loading">
                                 <img src="https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif" width="80">
-                            </div>
-                                
+                            </div>    
                                 <input type="text" v-model="first_name" placeholder="Firstname" class="form-control input-form shadow-none">
                                 <input type="text" v-model="last_name" placeholder="Lastname" class="form-control shadow-none">
                                 <input type="text" v-model="username" placeholder="Username" class="form-control shadow-none">
@@ -118,16 +117,14 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .register-holder{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
-.card-register{
-    /* opacity: .8; */
-    
-}
+
 .form-side{
     input:focus{
         outline: none !important;
