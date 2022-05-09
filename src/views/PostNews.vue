@@ -13,7 +13,7 @@
                                 <input type="text" class="form-control shadow-none" placeholder="Team Name: " v-model="team_name" >
                             </div>
                             <div class="form-group my-3">
-                                <textarea cols="20" rows="5" class="form-control shadow-none" :placeholder="`Briefing of Formation ( optional )  \n TEAM STATUS\n E.G: I am using a 4-3-3 formation : \n E.G: John Doe (Your player) is injured and will not be playing in our next match`" v-model="formation_brief"></textarea>
+                                <textarea cols="20" rows="5" class="form-control shadow-none" :placeholder="`Briefing of Formation ( optional )  \n E.G: I am using a 4-3-3 formation : \n TEAM STATUS \n E.G: John Doe (Your player) is injured and will not be playing in our next match`" v-model="formation_brief"></textarea>
                             </div>
                             <label for="" class="text-uppercase">Post starting line up(Optional)</label>
                             <div class="form-group my-3">
