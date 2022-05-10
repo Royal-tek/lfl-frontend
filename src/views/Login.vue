@@ -49,7 +49,7 @@
                         </form>
                         </div>
                         <div class="col-6  login-image">
-                            <img src="/assets/img/bg2.jpg" class="img-fluid" alt="">
+                            <img src="/assets/img/tim.png" class="img-fluid" alt="">
                         </div>
 
                     </div>

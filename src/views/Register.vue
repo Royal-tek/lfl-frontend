@@ -10,7 +10,7 @@
                     <h4 class="text-center register-text mb-5 text-uppercase">Own a <span style="color:#07f19f">team</span> now!</h4>
                     <div class="row">
                         <div class="col-md-7 register-image">
-                            <img src="/assets/img/bg2.jpg" class="img-fluid" alt="">
+                            <img src="/assets/img/tim.png" class="img-fluid" alt="">
                         </div>
                         <div class=" form-side col-md-5 col-sm-12">
                             <form class="form" @submit.prevent="submitForm">
