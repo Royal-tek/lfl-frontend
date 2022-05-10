@@ -483,6 +483,7 @@ img {
     border-radius: 3px;
     display: flex;
     justify-content: space-between;
+    z-index: 100000000000;
 }
 
 .close-btn {
