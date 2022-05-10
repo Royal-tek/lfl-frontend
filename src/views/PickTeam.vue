@@ -510,6 +510,15 @@ export default {
     this.getSelectTeamStatus();
   },
   created() {
+    axios.get('https://lfl-app.herokuapp.com/api/selectteamstatus/',{headers :{"Authorization": "Token " +localStorage.getItem('auth_token')}})
+    .then(res => {
+      if(res.data[0].status) {
+        this.$store.state.pickTeamError = "Team selection closed for the week"
+        return this.$router.push('/myteam')
+      }
+    })
+    .catch(err => console.log(err))
+
     setTimeout(() => {
       this.unselectedplayers = this.players;
     }, 5000);

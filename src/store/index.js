@@ -10,6 +10,7 @@ export default createStore({
   state: {
     token : null,
     players : null,
+    pickTeamError: "",
     error : {
       error: {
         login: [],
