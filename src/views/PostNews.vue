@@ -5,7 +5,7 @@
         <div class="container">
             <div class="card post-card p-5">
                 <div class="row">
-                    <h2 class="post-text mb-3 text-uppercase text-center" style="color:#07f19f">post your starting line up </h2>
+                    <h2 class="post-text mb-3 text-uppercase text-center" style="color:#07f19f">Post News about your team </h2>
 
                     <div class="col-md-12">
                         <form @submit.prevent="postContent" enctype="multipart/form-data">
@@ -13,9 +13,9 @@
                                 <input type="text" class="form-control shadow-none" placeholder="Team Name: " v-model="team_name" >
                             </div>
                             <div class="form-group my-3">
-                                <textarea cols="20" rows="5" class="form-control shadow-none" :placeholder="`Briefing of Formation ( optional )  \n E.G: I am using a 4-3-3 formation : `" v-model="formation_brief"></textarea>
+                                <textarea cols="20" rows="5" class="form-control shadow-none" :placeholder="`Briefing of Formation ( optional )  \n E.G: I am using a 4-3-3 formation : \n TEAM STATUS \n E.G: John Doe (Your player) is injured and will not be playing in our next match`" v-model="formation_brief"></textarea>
                             </div>
-                            <label for="" class="text-uppercase">Post starting line up</label>
+                            <label for="" class="text-uppercase">Post starting line up(Optional)</label>
                             <div class="form-group my-3">
                                 <input type="file" @change="uploadFile" class="form-control">
                             </div>
