@@ -12,9 +12,11 @@
                         <div class="col-md-6 col-sm-12 form-side">
                         <form @submit.prevent="login" class="form">
                             <div class="error">
-                                <!-- {{ $store.state.error }} -->
-                                <div v-if="$store.state.error.error">Username: {{ $store.state.error.error.login[0]}}</div>
-                                <div v-if="$store.state.error.error">Password: {{ $store.state.error.error.password[0]}}</div>
+                                <div>
+                                    {{ $store.state.error.error.detail ? $store.state.error.error.detail : null }}
+                                </div>
+                                <div v-show="$store.state.error.error.login" v-for="(err, index) in $store.state.error.error.login" :key="index">{{ err }}</div>
+                                <div v-show="$store.state.error.error.password" v-for="(err, index) in $store.state.error.error.password" :key="index">{{ err }}</div>
                             </div>
                             <div class="loader" style="text-align: center" v-if="!this.$store.state.error && this.$store.state.loading">
                                 <img src="https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif" width="80">
@@ -114,12 +116,14 @@ export default {
         background-position: center;
         background-repeat: no-repeat;
     }
+
     .login-holder{
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100vh;
     }
+
     .form-side{
         display: flex;
         align-items: center;

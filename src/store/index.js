@@ -10,7 +10,14 @@ export default createStore({
   state: {
     token : null,
     players : null,
-    error : "",
+    pickTeamError: "",
+    error : {
+      error: {
+        login: [],
+        password: [],
+        detail: ""
+      }
+    },
     loading: false,
     showPaymentGateway: false,
     paymentSuccessfulMessage: "",
@@ -28,11 +35,7 @@ export default createStore({
   mutations: {
     
     updateStorage(state, token){
-      
-      
       state.token = token
-      
-      console.log(state.token)
       setLocalStorage(state.token)
     },
     showError(state, error){
@@ -74,7 +77,6 @@ export default createStore({
             context.state.error = ""
             context.state.loading = false
           }, 5000)
-          // console.log(error.response.data)
         })
       })
     

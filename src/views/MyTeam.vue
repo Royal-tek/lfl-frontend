@@ -9,6 +9,11 @@
                 </div>
             </div>
         </section>
+
+        <div class="select-team-error" v-if="$store.state.pickTeamError">
+            <span>{{ $store.state.pickTeamError }}</span>
+            <span @click="$store.state.pickTeamError = ''" class="close-btn"><i class="fa fa-times"></i></span>
+        </div>
         
         <div class="display" >
             <div class="field">
@@ -148,7 +153,7 @@
   </div>
 </div>
         <!-- <button @click="showalert()"> Click me</button> -->
-        <Footer/>
+<Footer/>
     </div>
 </template>
 
@@ -464,5 +469,24 @@ img {
         width: 100%;
         padding: 60px 0;
     }
+}
+
+.select-team-error {
+    padding: 20px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgb(80, 20, 20);
+    color: #fff;
+    width: 330px;
+    font-weight: bold;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 20px;
 }
 </style>

@@ -103,21 +103,21 @@
           <div class="col-md-6" data-aos="fade-left"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-plus"></i>
-              <h4><a href="#">Get registered</a></h4>
+              <h4><router-link to="/register">Get registered</router-link></h4>
               <p>Before you can create your fantasy team you have to get yourslef registered.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-right"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Go to team > pick team</a></h4>
+              <h4><router-link to="/pickteam">Go to team > pick team</router-link></h4>
               <p>When you have been registered , you can now pick your team following the specified rules.</p>
             </div>
           </div>
           <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-left"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Go to team > my team</a></h4>
+              <h4><router-link to="/myteam">Go to team > my team</router-link></h4>
               <p>At the my team section, you can now view and manage your selected team. View your selected player points and statistics.</p>
             </div>
           </div>
