@@ -22,7 +22,7 @@
         <a href="https://www.instagram.com/heis__royal" target="_blank" class="text-white me-4">
         <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://www.linkedin.com" target="_blank" class="text-white me-4">
+        <a href="https://www.linkedin.com/in/protek/" target="_blank" class="text-white me-4">
         <i class="fab fa-linkedin"></i>
         </a>
         <a href="https://github.com/Royal-tek/" target="_blank" class="text-white me-4">
