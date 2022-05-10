@@ -28,6 +28,10 @@
         <a href="https://github.com/Royal-tek/" target="_blank" class="text-white me-4">
         <i class="fab fa-github"></i>
         </a>
+
+        <a href="https://odeydev.netlify.app/" target="_blank" class="text-white me-4">
+        <i class="fa fa-globe"></i>
+        </a>
     </div>
     <!-- Right -->
     </section>
@@ -114,6 +118,7 @@
             <p><i class="fas fa-envelope mr-3"></i> lfl@gmail.com</p>
             <!-- <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p> -->
             <p><i class="fas fa-print mr-3"></i> Protek@gmail.com </p>
+            <p><i class="fas fa-envelope mr-3"></i> hupdev@gmail.com </p>
         </div>
         <!-- Grid column -->
         </div>
