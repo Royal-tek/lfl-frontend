@@ -124,7 +124,7 @@
           <div class="col-md-6 mt-4 mt-md-0" data-aos="fade-right"  data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-binoculars"></i>
-              <h4><a href="#">Go to rankings and view your performance</a></h4>
+              <h4><router-link to="/leaderboards">Go to rankings and view your performance</router-link></h4>
               <p>You can go to the ranking sections to track your position in the leaderboards.</p>
             </div>
           </div>
