@@ -71,10 +71,10 @@ export default {
             submitForm(){
                 this.loading = true
                 const Formdata = {
-                    first_name : this.first_name,
-                    last_name : this.last_name,
-                    username : this.username,
-                    email : this.email,
+                    first_name : this.first_name.toLowerCase(),
+                    last_name : this.last_name.toLowerCase(),
+                    username : this.username.toLowerCase(),
+                    email : this.email.toLowerCase(),
                     password : this.password,
                     password_confirm : this.password_confirm
 

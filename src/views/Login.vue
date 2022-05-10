@@ -89,7 +89,7 @@ export default {
         },
         login(){
             this.$store.dispatch('userLogin', {
-                username : this.username,
+                username : this.username.toLowerCase(),
                 password : this.password
             })
             .then(()=>{
