@@ -119,6 +119,8 @@ export default {
                 aqua : "Agric Extention",
                 cas : "Animal Science",
                 chem : "Chemical Engineering",
+                met : "Mechatronics",
+                pgg : "Post Graduates"
             },
 
             registerInfo:{
