@@ -10,6 +10,7 @@ export default {
         localStorage.removeItem('auth_token')
         localStorage.removeItem('username')
         localStorage.removeItem('email')
+        localStorage.removeItem('id')
         window.location.href ="/"
     }
     },
