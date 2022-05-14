@@ -1114,7 +1114,7 @@ input[type="submit"] {
   background-color: #c5f39f;
   font-weight: bold
 } */
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .player-row {
     width: 100%;
   }
