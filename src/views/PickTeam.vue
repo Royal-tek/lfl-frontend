@@ -537,7 +537,7 @@ export default {
       .get("https://lfl-app.herokuapp.com/api/displayplayers/")
       .then(response =>{
         this.selectTeam = response.data
-        console.log("status",response.data)
+        // console.log("status",response.data)
       })
     },
     getUser() {
@@ -555,7 +555,7 @@ export default {
         // })
         .then((response) => {
           this.user = response.data;
-          console.log(response.data);
+          // console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -634,7 +634,7 @@ export default {
       axios
         .get("https://lfl-app.herokuapp.com/api/displayplayers/")
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           this.players = response.data;
         });
     },
@@ -650,7 +650,7 @@ export default {
           isNaN(this.formations.attackers.amount)
         ) {
           this.error = "Only Input Numbers";
-          console.log("Only input Numbers");
+          // console.log("Only input Numbers");
         } else {
           if (
             this.formations.defender.amount < 1 ||
@@ -658,7 +658,7 @@ export default {
             this.formations.attackers.amount < 1
           ) {
             this.error = "Input field cannot be a negative number";
-            console.log("canot be a negative number");
+            // console.log("canot be a negative number");
           } else {
             const TotalNumber =
               this.formations.defender.amount +
@@ -667,7 +667,7 @@ export default {
             console.log(TotalNumber);
             if (TotalNumber > 10 || TotalNumber < 10) {
               this.error = "Formation should sum up to 10";
-              console.log("Formation cannot exceed 10");
+              // console.log("Formation cannot exceed 10");
             } else {
               if (
                 this.formations.defender.amount > 5 ||
@@ -688,7 +688,7 @@ export default {
         }
       } else {
         this.error = "Please Input some value";
-        console.log("Please input some value in the area");
+        // console.log("Please input some value in the area");
       }
       if (this.error) {
         setTimeout(() => {
@@ -822,7 +822,7 @@ export default {
         this.enableSave.value = true
         this.enableSave.error = ""
       }
-      console.log(countPlayers(player.team, combinedArray));
+      // console.log(countPlayers(player.team, combinedArray));
       
       if (position === "gk") {
         this.formations.gk = "";
