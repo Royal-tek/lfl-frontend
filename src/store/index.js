@@ -22,7 +22,7 @@ export default createStore({
     showPaymentGateway: false,
     paymentSuccessfulMessage: "",
     user: {},
-    matchweek: 1
+    matchweek: 3
   },
   getters:{
     loggedIn : state =>{
