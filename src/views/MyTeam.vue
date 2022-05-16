@@ -95,7 +95,7 @@
                 </div>
                 <div>
                     <div class="label">Gameweek</div>
-                    <div class="value">{{ week }}</div>
+                    <div class="value">{{ week-1 }}</div>
                 </div>
                 <div>
                     <div class="label">Gameweek Points</div>
